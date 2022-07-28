@@ -1,9 +1,10 @@
 import React from 'react'
+import LogoSearch from '../LogoSearch/LogoSearch'
 
 const LeftSide = () => {
   return (
     <div className="LeftSide">
-      LeftSide
+      <LogoSearch/>
     </div>
   )
 }
