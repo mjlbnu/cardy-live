@@ -1,22 +1,30 @@
 import React from "react";
 import "./PlayersCard.css";
 import { Gamers } from "../../Data/GamersData";
+import { UilClipboardNotes } from "@iconscout/react-unicons";
 
 const PlayersCard = () => {
   return (
-    <div className="PlayersCard">
+    <div className="players-card">
       {Gamers.map((gamer, id) => {
         return (
-          <div className="Gamer">
-            <div>
-              <img src={gamer.img} alt="" className="GamerImg" />
-              <div className="name">
-                <span>{gamer.name}</span>
-                <span>@{gamer.username}</span>
+          <>
+            <div className="gamer">
+              <div>
+                <div className="online-dot"></div>
+                <img src={gamer.img} alt="" className="gamer-image" />
+                <div className="name">
+                  <span>{gamer.name}</span>
+                  <span>Online</span>
+                </div>
+              </div>
+              <div className="btn-container">
+                <UilClipboardNotes />
+                <button className="button pc-button">Reveal</button>
               </div>
             </div>
-            <button className="button pc-button">Reveal</button>
-          </div>
+            <hr />
+          </>
         );
       })}
     </div>

@@ -8,4 +8,12 @@ export const Gamers = [
   { name: "Gamer Two", username: "gamerTwo", img: img2 },
   { name: "Gamer Three", username: "gamerThree", img: img3 },
   { name: "Gamer Four", username: "gamerFour", img: img4 },
+  { name: "Gamer One", username: "gamerOne", img: img1 },
+  { name: "Gamer Two", username: "gamerTwo", img: img2 },
+  { name: "Gamer Three", username: "gamerThree", img: img3 },
+  { name: "Gamer Four", username: "gamerFour", img: img4 },
+  { name: "Gamer One", username: "gamerOne", img: img1 },
+  { name: "Gamer Two", username: "gamerTwo", img: img2 },
+  { name: "Gamer Three", username: "gamerThree", img: img3 },
+  { name: "Gamer Four", username: "gamerFour", img: img4 },
 ]
