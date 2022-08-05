@@ -20,7 +20,7 @@ const PlayersCard = () => {
               </div>
               <div className="btn-container">
                 <UilClipboardNotes />
-                <button className="button pc-button">Reveal</button>
+                <button className="button pc-button">Throw</button>
               </div>
             </div>
             <hr />
