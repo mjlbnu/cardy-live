@@ -1,0 +1,12 @@
+.Auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 4rem;
+  position: relative;
+}
+
+.a-left > svg {
+  width: 300px;
+}
