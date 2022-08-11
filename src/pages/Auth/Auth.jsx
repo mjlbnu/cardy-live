@@ -161,13 +161,47 @@ const Auth = () => {
           </defs>
         </svg>
         <div className="cardy-phrase">
-          <h3>Explore the Cardy Xperience</h3>
+          <h3>Welcome to the Cardy Xperience</h3>
         </div>
       </div>
-      <SignUp />
+      <LogIn />
     </div>
   );
 };
+
+function LogIn() {
+  return (
+    <div className="a-right">
+      <form className="infoForm authForm">
+        <h3>Log In</h3>
+        <div>
+          <input
+            type="text"
+            placeholder="Username"
+            className="infoInput"
+            name="username"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Password"
+            className="infoInput"
+            name="password"
+          />
+        </div>
+        <button className="button infoButton" type="submit">
+          Login
+        </button>
+        <div>
+          <span style={{ fontSize: "13px" }}>
+            Don't have an account Sign up
+          </span>
+        </div>
+      </form>
+    </div>
+  );
+}
 
 function SignUp() {
   return (
@@ -210,14 +244,14 @@ function SignUp() {
             name="confirmpass"
           />
         </div>
+        <button className="button infoButton" type="submit">
+          Signup
+        </button>
         <div>
           <span style={{ fontSize: "13px" }}>
             Already have an account. Login!
           </span>
         </div>
-        <button className="button infoButton" type="submit">
-          Signup
-        </button>
       </form>
     </div>
   );

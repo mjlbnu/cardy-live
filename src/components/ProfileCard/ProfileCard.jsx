@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Cover from "../../img/cover2.jpg";
 import ProfileImg from "../../img/caco.jpg";
 import "./ProfileCard.css";
+import ProfileModal from "../ProfileModal/ProfileModal";
 
 function ProfileCard() {
+  const [modalOpened, setModalOpened] = useState(false);
+
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
@@ -29,7 +32,8 @@ function ProfileCard() {
         </div>
         <hr />
       </div>
-      <span>My Profile</span>
+      <span onClick={() => setModalOpened(true)}>My Profile</span>
+      <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
     </div>
   );
 }

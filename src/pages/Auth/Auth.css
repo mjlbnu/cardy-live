@@ -49,7 +49,7 @@
 .infoButton {
   width: 6rem;
   height: 2rem;
-  align-self: flex-end;
+  align-self: center;
 }
 
 .authForm {
