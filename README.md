@@ -1,5 +1,4 @@
-40:30
-1:19
+34:00
 
 # Getting Started with Create React App
 
