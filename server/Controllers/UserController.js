@@ -1,4 +1,5 @@
 import UserModel from "../Models/UserModel.js";
+import bcrypt from "bcrypt";
 
 export const getUser = async (req, res) => {
   const id = req.params.id;
@@ -14,4 +15,41 @@ export const getUser = async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
+};
+
+export const updateUser = async (req, res) => {
+  const id = req.params.id;
+  const { currentUserId, currentUserAdminStatus, password } = req.body;
+
+  if (id === currentUserId || currentUserAdminStatus) {
+    try {
+      if (password) {
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(password, salt);
+      }
+      const user = await UserModel.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+    return;
+  }
+  res.status(403).json("Access Denied");
+};
+
+export const deleteUser = async (req, res) => {
+  const id = req.params.id;
+  const { currentUserId, currentUserAdminStatus } = req.body;
+  if (id === currentUserId || currentUserAdminStatus) {
+    try {
+      await UserModel.findByIdAndDelete(id);
+      res.status(200).json("User deleted successfully");
+      return;
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+  res.status(403).json("Access Denied");
 };
