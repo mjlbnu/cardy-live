@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import "./Auth.css";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logIn, signUp } from "../../actions/AuthAction";
 
 const Auth = () => {
-  const [isSignUp, setSignUp] = useState(true);
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.authReducer.loading);
+  const [isSignUp, setSignUp] = useState(true);
 
   const [data, setData] = useState({
     firstname: "",
@@ -271,8 +272,8 @@ const Auth = () => {
           >
             * Confirm Password is not same
           </span>
-          <button className="button infoButton" type="submit">
-            {isSignUp ? "Signup" : "Login"}
+          <button className="button infoButton" type="submit" disabled={loading}>
+            {loading ? "Processing..." : isSignUp ? "Signup" : "Login"}
           </button>
           <div>
             <span
