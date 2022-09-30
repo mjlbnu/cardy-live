@@ -1,6 +1,7 @@
 1:11 Follow
 48:17 changes on UI
 52:38 JWT on server side
+56:27 JWT authentication
 
 # Getting Started with Create React App
 
