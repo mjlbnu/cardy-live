@@ -8,7 +8,7 @@ const Ranking = () => {
       <h3>Ranking</h3>
       {RankingData.map((player) => {
         return (
-          <div className="player">
+          <div className="player" key={player.points}>
             <span>{player.name}</span>
             <span>{player.points} points</span>
           </div>

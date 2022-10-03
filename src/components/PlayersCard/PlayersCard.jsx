@@ -8,7 +8,7 @@ const PlayersCard = () => {
     <div className="players-card">
       {Gamers.map((gamer, id) => {
         return (
-          <>
+          <div key={gamer.id}>
             <div className="gamer">
               <div>
                 <div className="online-dot"></div>
@@ -24,7 +24,7 @@ const PlayersCard = () => {
               </div>
             </div>
             <hr />
-          </>
+          </div>
         );
       })}
     </div>

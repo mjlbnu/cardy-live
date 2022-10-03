@@ -75,7 +75,7 @@
   position: relative;
 }
 
-.players-card > hr {
+.players-card > div > hr {
   width: 85%;
   border: 0.1px solid #ececec;
 }
