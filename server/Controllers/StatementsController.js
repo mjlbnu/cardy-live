@@ -1,6 +1,7 @@
 import StatementModel from "../Models/StatementsModel.js";
 
 export const registerStatements = async (req, res) => {
+  console.log(req.body);
   const { currentUserId, firstStatement, secondStatement, thirdStatement } =
     req.body;
 
