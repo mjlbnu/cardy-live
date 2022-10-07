@@ -1,14 +1,12 @@
 import StatementModel from "../Models/StatementsModel.js";
 
 export const registerStatements = async (req, res) => {
-  console.log(req.body);
-  const { currentUserId, firstStatement, secondStatement, thirdStatement } =
-    req.body;
+  const { gameId, currentUserId, statements } = req.body;
 
   const newStatements = new StatementModel({
-    gameId: "id1",
+    gameId: gameId,
     userId: currentUserId,
-    statements: [firstStatement, secondStatement, thirdStatement],
+    statements: statements,
   });
 
   try {

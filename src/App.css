@@ -52,7 +52,3 @@
   background: silver;
   pointer-events: none;
 }
-
-::-webkit-scrollbar {
-  display: none;
-}

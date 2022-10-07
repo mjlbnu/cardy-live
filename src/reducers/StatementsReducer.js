@@ -1,20 +1,18 @@
 const statementsReducer = (
-  state = { statements: null, loading: false, error: false, uploading: false },
+  state = { statements: [], error: false, sending: false },
   action
 ) => {
   switch (action.type) {
     case "UPLOAD_START":
-      return { ...state, uploading: true, error: false };
+      return { ...state, sending: true, error: false };
     case "UPLOAD_SUCCESS":
       return {
-        ...state,
         statements: [action.data],
-        ...state.statements,
-        uploading: false,
+        sending: false,
         error: false,
       };
     case "UPLOAD_FAIL":
-      return { ...state, uploading: false, error: true };
+      return { ...state, sending: false, error: true };
     default:
       return state;
   }
