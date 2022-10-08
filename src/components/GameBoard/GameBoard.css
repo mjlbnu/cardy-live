@@ -1,7 +1,0 @@
-.GameBoard {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: auto;
-  gap: 1rem;
-}
