@@ -1,6 +1,20 @@
 import UserModel from "../Models/UserModel.js";
 import bcrypt from "bcrypt";
 
+// @desc   Get all users
+// @route  GET /user/list
+// @access Public
+export const getUsers = async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    if (users) {
+      return res.status(200).json(users);
+    }
+  } catch (error) {
+    res.status(404).json("No users found");
+  }
+}
+
 export const getUser = async (req, res) => {
   const id = req.params.id;
 
