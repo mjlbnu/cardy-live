@@ -16,4 +16,4 @@ export const Gamers = [
   { id: 10, name: "Gamer Two", username: "gamerTwo", img: img2 },
   { id: 11, name: "Gamer Three", username: "gamerThree", img: img3 },
   { id: 12, name: "Gamer Four", username: "gamerFour", img: img4 },
-]
+];

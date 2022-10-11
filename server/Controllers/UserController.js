@@ -13,7 +13,7 @@ export const getUsers = async (req, res) => {
   } catch (error) {
     res.status(404).json("No users found");
   }
-}
+};
 
 export const getUser = async (req, res) => {
   const id = req.params.id;

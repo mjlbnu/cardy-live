@@ -27,4 +27,4 @@ export const RankingData = [
     name: "GamerOne",
     points: 12300,
   },
-]
+];

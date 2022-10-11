@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { getUsers } from "../../actions/UserAction";
 import "./PlayersCard.css";
-import { Gamers } from "../../Data/GamersData";
+import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes } from "@iconscout/react-unicons";
+import UserImg from "../../img/img1.png";
 
 const PlayersCard = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const { users, loading } = useSelector((state) => state.userReducer);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
   return (
     <div className="players-card">
-      {Gamers.map((gamer, id) => {
+      {users.map((user) => {
         return (
-          <div key={gamer.id}>
+          <div key={user._id}>
             <div className="gamer">
               <div>
                 <div className="online-dot"></div>
-                <img src={gamer.img} alt="" className="gamer-image" />
+                <img src={UserImg} alt="" className="gamer-image" />
                 <div className="name">
-                  <span>{gamer.name}</span>
+                  <span>{user.firstname}</span>
                   <span>Online</span>
                 </div>
               </div>

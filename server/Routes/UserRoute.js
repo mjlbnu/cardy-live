@@ -3,7 +3,7 @@ import {
   deleteUser,
   getUser,
   updateUser,
-  getUsers
+  getUsers,
 } from "../Controllers/UserController.js";
 
 const router = express.Router();
