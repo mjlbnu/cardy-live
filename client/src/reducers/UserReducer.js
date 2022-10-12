@@ -1,5 +1,5 @@
 const userReducer = (
-  state = { userData: null, loading: false, error: false },
+  state = { users: [], loading: false, error: false },
   action
 ) => {
   switch (action.type) {
