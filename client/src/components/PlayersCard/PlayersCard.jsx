@@ -33,7 +33,12 @@ const PlayersCard = () => {
                   </div>
                   <div className="btn-container">
                     <UilClipboardNotes />
-                    <button className="button pc-button">Throw</button>
+                    <button
+                      className="button pc-button"
+                      data-gamerid={user._id}
+                    >
+                      Throw
+                    </button>
                   </div>
                 </div>
                 <hr />

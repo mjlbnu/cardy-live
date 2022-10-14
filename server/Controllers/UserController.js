@@ -6,8 +6,12 @@ import bcrypt from "bcrypt";
 // @access Public
 export const getUsers = async (req, res) => {
   try {
-    const users = await UserModel.find();
+    let users = await UserModel.find();
     if (users) {
+      users = users.map((user) => {
+        const { password, ...otherInfo } = user;
+        return otherInfo;
+      });
       return res.status(200).json(users);
     }
   } catch (error) {
