@@ -10,11 +10,7 @@ const CardsContainer = () => {
     (state) => state.statementsReducer
   );
 
-  useEffect(() => {
-    //dispatch(getGamerStatements());
-  }, []);
-
-  if (!statements) return;
+  if (!statements) return null;
 
   return (
     <div className="container">

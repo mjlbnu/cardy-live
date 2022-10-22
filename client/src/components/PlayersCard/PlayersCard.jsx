@@ -20,7 +20,7 @@ const PlayersCard = () => {
     dispatch(getUsers());
   }, []);
 
-  if (!users) return;
+  if (!users) return null;
 
   return (
     <div className="players-card">

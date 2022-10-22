@@ -48,9 +48,10 @@
   gap: 1.5rem;
   position: absolute;
   bottom: 50px;
-  page-break-after: 20px;
+  /*page-break-after: 20px;*/
   text-align: center;
   font-size: 18px;
+  min-width: 100%;
 }
 
 .card:hover {
