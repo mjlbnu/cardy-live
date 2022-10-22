@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import "./Statements.css";
 import ProfileImage from "../../img/caco.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadStatements } from "../../actions/UploadAction";
+import { uploadStatements } from "../../actions/StatementsAction";
 
 const Statements = () => {
   const sending = useSelector((state) => state.statementsReducer.sending);

@@ -1,21 +1,18 @@
 import React from "react";
 import "./Card.css";
 
-function Card() {
+const Card = (props) => {
   return (
     <div className="card">
       <div className="circle">
-        <h2>01</h2>
+        <h2>{props.index}</h2>
       </div>
       <div className="content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <p>{props.text}</p>
         <button className="button card-button">Choose</button>
       </div>
     </div>
   );
-}
+};
 
 export default Card;

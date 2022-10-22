@@ -4,10 +4,17 @@ import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
+import { getGamerStatements } from "../../actions/StatementsAction";
 
 const PlayersCard = () => {
   const dispatch = useDispatch();
   const { users, loading } = useSelector((state) => state.userReducer);
+
+  const handleThrow = async (e) => {
+    e.preventDefault();
+    const gamerId = e.target.dataset.gamerid;
+    dispatch(getGamerStatements(gamerId));
+  };
 
   useEffect(() => {
     dispatch(getUsers());
@@ -36,6 +43,7 @@ const PlayersCard = () => {
                     <button
                       className="button pc-button"
                       data-gamerid={user._id}
+                      onClick={handleThrow}
                     >
                       Throw
                     </button>

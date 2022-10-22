@@ -1,5 +1,15 @@
 import StatementModel from "../Models/StatementsModel.js";
 
+export const getGamerStatements = async (req, res) => {
+  const gamerId = req.params.id;
+  try {
+    const statements = await StatementModel.findOne({ userId: gamerId });
+    res.status(200).json(statements);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const registerStatements = async (req, res) => {
   const { gameId, currentUserId, statements } = req.body;
 

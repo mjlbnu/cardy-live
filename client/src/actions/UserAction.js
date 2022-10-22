@@ -1,4 +1,5 @@
 import * as UserApi from "../api/UserRequest";
+import * as StatementsApi from "../api/StatementsRequest";
 
 export const getUsers = () => async (dispatch) => {
   dispatch({ type: "RETRIEVING_START" });
@@ -6,7 +7,6 @@ export const getUsers = () => async (dispatch) => {
     const { data } = await UserApi.getUsers();
     dispatch({ type: "RETRIEVING_SUCCESS", data: data });
   } catch (error) {
-    console.log(error);
     dispatch({ type: "RETRIEVING_ERROR" });
   }
 };

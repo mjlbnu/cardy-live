@@ -9,7 +9,7 @@ export const getUsers = async (req, res) => {
     let users = await UserModel.find();
     if (users) {
       users = users.map((user) => {
-        const { password, ...otherInfo } = user;
+        const { password, ...otherInfo } = user._doc;
         return otherInfo;
       });
       return res.status(200).json(users);
