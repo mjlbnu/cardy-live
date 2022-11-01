@@ -3,9 +3,11 @@ import Cover from "../../img/cover2.jpg";
 import ProfileImg from "../../img/caco.jpg";
 import "./ProfileCard.css";
 import ProfileModal from "../ProfileModal/ProfileModal";
+import Statements from "../Statements/Statements";
 
 function ProfileCard() {
   const [modalOpened, setModalOpened] = useState(false);
+  const [modalStOpened, setModalStOpened] = useState(false);
 
   return (
     <div className="ProfileCard">
@@ -34,6 +36,11 @@ function ProfileCard() {
       </div>
       <span onClick={() => setModalOpened(true)}>My Profile</span>
       <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
+      <span onClick={() => setModalStOpened(true)}>My Statements</span>
+      <Statements
+        modalStOpened={modalStOpened}
+        setModalStOpened={setModalStOpened}
+      />
     </div>
   );
 }

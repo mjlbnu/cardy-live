@@ -19,13 +19,14 @@
   gap: 1rem;
 }
 
-.statements > div > input {
+.statements > div > .statement > input {
   background-color: var(--inputColor);
   border-radius: 10px;
   padding: 10px;
   font-size: 17px;
   border: none;
   outline: none;
+  width: 100%;
 }
 
 .send-statement {
@@ -35,10 +36,44 @@
   justify-content: center;
 }
 
+.statement {
+  display: flex;
+  gap: 1rem;
+}
+
 .st-button {
   width: 10rem;
   height: 2.5rem;
   padding: 5px;
   padding-left: 20px;
   padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--buttonBg);
+  transition: all 100ms ease-out;
+  width: 7rem;
+  height: 2.5rem;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.st-button-lie {
+  background: linear-gradient(98.63deg, #ec1a1a 0%, #ac0808 100%);
+  pointer-events: none;
+}
+
+.st-button:hover {
+  cursor: pointer;
+  color: orange;
+  background: transparent;
+  border: 2px solid var(--orange);
+}
+
+.st-button:disabled {
+  pointer-events: none;
 }
