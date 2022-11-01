@@ -11,12 +11,13 @@ export const getGamerStatements = async (req, res) => {
 };
 
 export const registerStatements = async (req, res) => {
-  const { gameId, currentUserId, statements } = req.body;
+  const { gameId, currentUserId, statements, lie } = req.body;
 
   const newStatements = new StatementModel({
     gameId: gameId,
     userId: currentUserId,
     statements: statements,
+    lie: lie,
   });
 
   try {
@@ -39,8 +40,13 @@ export const getStatements = async (req, res) => {
 };
 
 export const updateStatements = async (req, res) => {
-  const { currentUserId, firstStatement, secondStatement, thirdStatement } =
-    req.body;
+  const {
+    currentUserId,
+    firstStatement,
+    secondStatement,
+    thirdStatement,
+    lie,
+  } = req.body;
   const id = req.params.id;
 
   const updatedStatements = [firstStatement, secondStatement, thirdStatement];
@@ -48,7 +54,9 @@ export const updateStatements = async (req, res) => {
   try {
     const statements = await StatementModel.findById(id);
     if (statements.userId === currentUserId) {
-      await statements.updateOne({ $set: { statements: updatedStatements } });
+      await statements.updateOne({
+        $set: { statements: updatedStatements, lie: lie },
+      });
       res.status(200).json("Statements updated");
       return;
     }

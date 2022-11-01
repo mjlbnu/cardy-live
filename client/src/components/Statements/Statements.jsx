@@ -44,6 +44,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
         secondStatement.current.value,
         thirdStatement.current.value,
       ],
+      lie: itsALie,
     };
     dispatch(uploadStatements(newStatements));
     reset();
