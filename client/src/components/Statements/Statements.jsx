@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import "./Statements.css";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadStatements } from "../../actions/StatementsAction";
+import * as StatementsApi from "../../api/StatementsRequest";
 
 const Statements = ({ modalStOpened, setModalStOpened }) => {
   const [changeText, setChangeText] = useState(0);
@@ -14,6 +15,20 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
     secondStatement = useRef(),
     thirdStatement = useRef();
   const dispatch = useDispatch();
+  const [userStatements, setUserStatements] = useState({});
+
+  const getUserStatements = async () => {
+    const { data } = await StatementsApi.getGamerStatements(user._id);
+    setUserStatements(data);
+  };
+
+  useEffect(() => {
+    getUserStatements();
+  }, [user._id]);
+
+  const handleChange = (e) => {
+    setUserStatements({ ...userStatements, [e.target.name]: e.target.value });
+  };
 
   const handleMouseHover = (e) => {
     const eventType = e.type;
@@ -78,6 +93,11 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
               required
               type="text"
               placeholder="First statement"
+              name="firstStatement"
+              onChange={handleChange}
+              value={
+                userStatements.statements ? userStatements.statements[0] : ""
+              }
             />
             <button
               className={`st-button ${itsALie === 1 ? "st-button-lie" : ""}`}
@@ -96,6 +116,11 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
               required
               type="text"
               placeholder="Second statement"
+              name="secondStatement"
+              onChange={handleChange}
+              value={
+                userStatements.statements ? userStatements.statements[1] : ""
+              }
             />
             <button
               className={`st-button ${itsALie === 2 ? "st-button-lie" : ""}`}
@@ -114,6 +139,11 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
               required
               type="text"
               placeholder="Third statement"
+              name="thirdStatement"
+              onChange={handleChange}
+              value={
+                userStatements.statements ? userStatements.statements[2] : ""
+              }
             />
             <button
               className={`st-button ${itsALie === 3 ? "st-button-lie" : ""}`}

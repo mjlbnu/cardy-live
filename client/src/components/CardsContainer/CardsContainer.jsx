@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getGamerStatements } from "../../actions/StatementsAction";
+import React from "react";
+import { useSelector } from "react-redux";
 import Card from "../Card/Card";
 import "./CardsContainer.css";
 
 const CardsContainer = () => {
-  const dispatch = useDispatch();
   const { statements, loading } = useSelector(
     (state) => state.statementsReducer
   );

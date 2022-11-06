@@ -2,6 +2,8 @@
 48:17 changes on UI
 52:38 JWT on server side
 56:27 JWT authentication
+2:20:04 Infocard 2:23:37
+2:18:00 Logout
 
 # Getting Started with Create React App
 
