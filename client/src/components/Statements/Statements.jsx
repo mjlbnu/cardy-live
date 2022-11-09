@@ -15,11 +15,11 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
     secondStatement = useRef(),
     thirdStatement = useRef();
   const dispatch = useDispatch();
-  const [userStatements, setUserStatements] = useState({});
+  const [userStatements, setUserStatements] = useState([]);
 
   const getUserStatements = async () => {
     const { data } = await StatementsApi.getGamerStatements(user._id);
-    setUserStatements(data);
+    if (data) setUserStatements(data.statements);
   };
 
   useEffect(() => {
@@ -27,7 +27,15 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
   }, [user._id]);
 
   const handleChange = (e) => {
-    setUserStatements({ ...userStatements, [e.target.name]: e.target.value });
+    const index = +e.target.dataset.index;
+    const changedStatements = userStatements.map((statement, i) => {
+      if (i === index) {
+        return e.target.value;
+      } else {
+        return statement;
+      }
+    });
+    setUserStatements(changedStatements);
   };
 
   const handleMouseHover = (e) => {
@@ -95,9 +103,8 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
               placeholder="First statement"
               name="firstStatement"
               onChange={handleChange}
-              value={
-                userStatements.statements ? userStatements.statements[0] : ""
-              }
+              value={userStatements[0]}
+              data-index={0}
             />
             <button
               className={`st-button ${itsALie === 1 ? "st-button-lie" : ""}`}
@@ -118,9 +125,8 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
               placeholder="Second statement"
               name="secondStatement"
               onChange={handleChange}
-              value={
-                userStatements.statements ? userStatements.statements[1] : ""
-              }
+              value={userStatements[1]}
+              data-index={1}
             />
             <button
               className={`st-button ${itsALie === 2 ? "st-button-lie" : ""}`}
@@ -141,9 +147,8 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
               placeholder="Third statement"
               name="thirdStatement"
               onChange={handleChange}
-              value={
-                userStatements.statements ? userStatements.statements[2] : ""
-              }
+              value={userStatements[2]}
+              data-index={2}
             />
             <button
               className={`st-button ${itsALie === 3 ? "st-button-lie" : ""}`}
