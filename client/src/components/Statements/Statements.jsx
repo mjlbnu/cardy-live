@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import "./Statements.css";
 import { useDispatch, useSelector } from "react-redux";
-import { saveStatements, uploadStatements } from "../../actions/StatementsAction";
+import { saveStatements } from "../../actions/StatementsAction";
 import * as StatementsApi from "../../api/StatementsRequest";
 
 const Statements = ({ modalStOpened, setModalStOpened }) => {
@@ -23,6 +23,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
     if (data) {
       setUserStatements(data.statements);
       setStatementId(data._id);
+      setItsaLie(+data.lie);
     } 
   };
 
@@ -77,10 +78,11 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
       lie: itsALie,
     };
     dispatch(saveStatements(newStatements));
-    reset();
+    clearFields();
+    setModalStOpened(false);
   };
 
-  const reset = () => {
+  const clearFields = () => {
     firstStatement.current.value =
       secondStatement.current.value =
       thirdStatement.current.value =

@@ -1,0 +1,42 @@
+@keyframes animation {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.label {
+  font-size: 100px;
+  line-height: 0.9;
+}
+
+.border {
+  border: 2px solid #f2f2f2;
+}
+
+.progress {
+  height: 10px;
+  background-color: black;
+}
+
+.animate {
+  animation-name: animation;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 30000ms;
+}
