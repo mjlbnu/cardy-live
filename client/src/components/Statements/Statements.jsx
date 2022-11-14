@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import "./Statements.css";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadStatements } from "../../actions/StatementsAction";
+import { saveStatements, uploadStatements } from "../../actions/StatementsAction";
 import * as StatementsApi from "../../api/StatementsRequest";
 
 const Statements = ({ modalStOpened, setModalStOpened }) => {
@@ -16,10 +16,14 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
     thirdStatement = useRef();
   const dispatch = useDispatch();
   const [userStatements, setUserStatements] = useState([]);
+  const [statementId, setStatementId] = useState();
 
   const getUserStatements = async () => {
     const { data } = await StatementsApi.getGamerStatements(user._id);
-    if (data) setUserStatements(data.statements);
+    if (data) {
+      setUserStatements(data.statements);
+      setStatementId(data._id);
+    } 
   };
 
   useEffect(() => {
@@ -59,7 +63,10 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (itsALie === 0) return;
+
     const newStatements = {
+      id: statementId,
       gameId: "id1",
       currentUserId: user._id,
       statements: [
@@ -69,7 +76,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
       ],
       lie: itsALie,
     };
-    dispatch(uploadStatements(newStatements));
+    dispatch(saveStatements(newStatements));
     reset();
   };
 
@@ -162,12 +169,23 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
             </button>
           </div>
           <div className="send-statement">
+          <span
+            style={{
+              display: itsALie > 0 ? "none" : "block",
+              color: "red",
+              fontSize: "12px",
+              alignSelf: "flex-end",
+              marginRight: "5px",
+            }}
+          >
+            * select the lie!
+          </span>
             <button
               className="button st-button"
               onClick={handleSubmit}
               disabled={sending}
             >
-              {sending ? "Sending..." : "Send"}
+              {sending ? "Saving..." : "Save"}
             </button>
           </div>
         </div>

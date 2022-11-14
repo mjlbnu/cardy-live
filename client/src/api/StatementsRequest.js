@@ -7,3 +7,6 @@ export const uploadStatements = (data) =>
 
 export const getGamerStatements = (id) =>
   API.get(`/statements/${id}/gamerstatements`);
+
+  export const saveStatements = (data) =>
+    API.post("/statements/savestatements", data);

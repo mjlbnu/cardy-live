@@ -1,5 +1,34 @@
 import StatementModel from "../Models/StatementsModel.js";
 
+export const saveStatements = async (req, res) => {
+  const {id, currentUserId, gameId, statements, lie} = req.body;
+
+  if (!id) {
+    const newStatements = new StatementModel({
+      gameId: gameId,
+      userId: currentUserId,
+      statements: statements,
+      lie: lie,
+    });
+    try {
+      await newStatements.save();
+      res.status(200).json(newStatements);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+    return;
+  }
+  try {
+    const statementsFound = await StatementModel.findById(id);
+      await statementsFound.updateOne({
+        $set: { statements: statements, lie: lie },
+      });
+      res.status(200).json("Statements updated");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 export const getGamerStatements = async (req, res) => {
   const gamerId = req.params.id;
   try {
