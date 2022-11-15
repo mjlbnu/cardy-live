@@ -16,10 +16,14 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
     thirdStatement = useRef();
   const dispatch = useDispatch();
   const [userStatements, setUserStatements] = useState([]);
+  let statementId;
 
   const getUserStatements = async () => {
     const { data } = await StatementsApi.getGamerStatements(user._id);
-    if (data) setUserStatements(data.statements);
+    if (data) {
+      setUserStatements(data.statements);
+      statementId = data._id;
+    }
   };
 
   useEffect(() => {
@@ -68,6 +72,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
         thirdStatement.current.value,
       ],
       lie: itsALie,
+      id: statementId,
     };
     dispatch(uploadStatements(newStatements));
     reset();
