@@ -7,29 +7,22 @@
   }
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.container {
+.timer {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 100%;
 }
 
-.label {
+.timer > .label {
   font-size: 100px;
   line-height: 0.9;
 }
 
-.border {
+.timer > .border {
   border: 2px solid #f2f2f2;
 }
 
-.progress {
+.timer > .border > .progressbar {
   height: 10px;
   background-color: black;
 }
