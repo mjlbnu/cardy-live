@@ -24,7 +24,6 @@
 
 .timer > .border > .progressbar {
   height: 10px;
-  background-color: black;
 }
 
 .animate {
@@ -32,4 +31,12 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-duration: 30000ms;
+}
+
+.pb-color-1 {
+  background-color: black;
+}
+
+.pb-color-2 {
+  background-color: red;
 }

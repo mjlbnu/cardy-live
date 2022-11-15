@@ -29,7 +29,9 @@ function Timer() {
         <div
           ref={progressbar}
           id="#progressbar"
-          className={`progressbar ${seconds > 0 ? "animate" : ""}`}
+          className={`progressbar ${seconds > 0 ? "animate" : ""} ${
+            seconds > 10 ? "pb-color-1" : "pb-color-2"
+          }`}
         ></div>
       </div>
     </div>
