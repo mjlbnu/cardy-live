@@ -17,6 +17,7 @@ function Timer() {
     return () => clearInterval(interval);
   }, [seconds]);
 
+  if (seconds === 0) return;
   return (
     <div
       className="timer"

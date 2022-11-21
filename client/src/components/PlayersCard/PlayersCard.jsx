@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
 import { getGamerStatements } from "../../actions/StatementsAction";
+import { startTimer } from "../../actions/TimerAction";
 
 const PlayersCard = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const PlayersCard = () => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
     dispatch(getGamerStatements(gamerId));
+    dispatch(startTimer(30));
   };
 
   useEffect(() => {
