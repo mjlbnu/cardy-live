@@ -8,11 +8,12 @@ const Ranking = () => {
   const timer = useSelector((state) => state.timerReducer);
 
   const renderTimer = () => {
-    return <Timer />;
-  }
+    return <Timer data={timer.seconds} />;
+  };
 
   return (
     <div className="Ranking">
+      {renderTimer()}
       <h3>Ranking</h3>
       {RankingData.map((player) => {
         return (

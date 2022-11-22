@@ -2,14 +2,16 @@ import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import "./Timer.css";
 
-function Timer() {
-  const [seconds, setSeconds] = useState(30);
+function Timer(data) {
+  const timer = useSelector((state) => state.timerReducer);
+  const [seconds, setSeconds] = useState(timer.seconds);
   const progressbar = useRef();
 
   useEffect(() => {
-    if (seconds === 0) return;
+    if (seconds === 0) return null;
     const oneSecond = 1000;
     const interval = setInterval(() => {
       setSeconds((seconds) => seconds - 1);
@@ -17,7 +19,7 @@ function Timer() {
     return () => clearInterval(interval);
   }, [seconds]);
 
-  if (seconds === 0) return;
+  if (seconds === 0) return null;
   return (
     <div
       className="timer"
