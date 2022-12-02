@@ -15,7 +15,7 @@ const PlayersCard = () => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
     dispatch(getGamerStatements(gamerId));
-    dispatch(startTimer(30));
+    dispatch(startTimer(10));
   };
 
   useEffect(() => {

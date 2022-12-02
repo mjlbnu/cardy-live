@@ -1,20 +1,27 @@
 import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { startTimer } from "../../actions/TimerAction";
 import "./Timer.css";
 
-function Timer(data) {
-  const timer = useSelector((state) => state.timerReducer);
-  const [seconds, setSeconds] = useState(timer.seconds);
+function Timer() {
+  const dispatch = useDispatch();
+  const { seconds } = useSelector((state) => state.timerReducer);
   const progressbar = useRef();
+
+  const restartProgressBar = () => {
+    progressbar.current.classList.remove("animate");
+    void progressbar.current.offsetWidth;
+    progressbar.current.classList.add("animate");
+  };
 
   useEffect(() => {
     if (seconds === 0) return null;
+    if (seconds === 10) restartProgressBar();
     const oneSecond = 1000;
     const interval = setInterval(() => {
-      setSeconds((seconds) => seconds - 1);
+      dispatch(startTimer(seconds - 1));
     }, oneSecond);
     return () => clearInterval(interval);
   }, [seconds]);
@@ -25,6 +32,7 @@ function Timer(data) {
       className="timer"
       style={{
         display: seconds > 0 ? "block" : "none",
+        color: seconds > 5 ? "black" : "red",
       }}
     >
       <div className="label">{seconds}</div>
@@ -32,8 +40,8 @@ function Timer(data) {
         <div
           ref={progressbar}
           id="#progressbar"
-          className={`progressbar ${seconds > 0 ? "animate" : ""} ${
-            seconds > 10 ? "pb-color-1" : "pb-color-2"
+          className={`${seconds > 0 ? "progressbar animate" : ""} ${
+            seconds > 5 ? "pb-color-1" : "pb-color-2"
           }`}
         ></div>
       </div>

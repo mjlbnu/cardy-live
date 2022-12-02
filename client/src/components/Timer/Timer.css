@@ -30,7 +30,8 @@
   animation-name: animation;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-duration: 30000ms;
+  animation-duration: 10000ms;
+  animation-delay: 100ms;
 }
 
 .pb-color-1 {
