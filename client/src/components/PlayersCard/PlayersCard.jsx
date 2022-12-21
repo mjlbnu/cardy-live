@@ -6,6 +6,7 @@ import { UilClipboardNotes } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
 import { getGamerStatements } from "../../actions/StatementsAction";
 import { startTimer } from "../../actions/TimerAction";
+import { Config } from "../../Config/Config";
 
 const PlayersCard = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const PlayersCard = () => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
     dispatch(getGamerStatements(gamerId));
-    dispatch(startTimer(10));
+    dispatch(startTimer(Config.timerDuration));
   };
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startTimer } from "../../actions/TimerAction";
 import "./Timer.css";
+import { Config } from "../../Config/Config";
 
 function Timer() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Timer() {
 
   useEffect(() => {
     if (seconds === 0) return null;
-    if (seconds === 10) restartProgressBar();
+    if (seconds === Config.timerDuration) restartProgressBar();
     const oneSecond = 1000;
     const interval = setInterval(() => {
       dispatch(startTimer(seconds - 1));
@@ -32,7 +33,7 @@ function Timer() {
       className="timer"
       style={{
         display: seconds > 0 ? "block" : "none",
-        color: seconds > 5 ? "black" : "red",
+        color: seconds > Config.timerBlack ? "black" : "red",
       }}
     >
       <div className="label">{seconds}</div>
@@ -41,7 +42,7 @@ function Timer() {
           ref={progressbar}
           id="#progressbar"
           className={`${seconds > 0 ? "progressbar animate" : ""} ${
-            seconds > 5 ? "pb-color-1" : "pb-color-2"
+            seconds > Config.timerBlack ? "pb-color-1" : "pb-color-2"
           }`}
         ></div>
       </div>
