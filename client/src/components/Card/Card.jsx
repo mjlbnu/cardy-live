@@ -2,6 +2,12 @@ import React from "react";
 import "./Card.css";
 
 const Card = (props) => {
+
+  const handleChoose = (e) => {
+    e.preventDefault()
+    console.log(e.target.dataset.userId);
+  };
+
   return (
     <div className="card">
       <div className="circle">
@@ -9,7 +15,10 @@ const Card = (props) => {
       </div>
       <div className="content">
         <p>{props.text}</p>
-        <button className="button card-button">Choose</button>
+        <button 
+          className="button card-button" 
+          data-userId={props.userId}
+          onClick={handleChoose}>Choose</button>
       </div>
     </div>
   );
