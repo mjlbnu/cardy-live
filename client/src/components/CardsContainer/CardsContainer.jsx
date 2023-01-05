@@ -7,13 +7,7 @@ const CardsContainer = () => {
   const { statements, loading } = useSelector(
     (state) => state.statementsReducer
   );
-
-  const fillCards = () => {
-    const userId = statements.userId;
-    statements.statements.map((statement, index) => {
-      return <Card text={statement} index={index + 1} userId={userId}/>;
-    })
-  };
+  const userId = statements.userId;
 
   if (!statements) return null;
 
@@ -22,9 +16,8 @@ const CardsContainer = () => {
       {loading
         ? "Fetching statements"
         : statements.statements.map((statement, index) => {
-          return <Card text={statement} index={index + 1} userId={"userId"}/>;
-        })
-      }
+            return <Card text={statement} index={index + 1} userId={userId} />;
+          })}
     </div>
   );
 };
