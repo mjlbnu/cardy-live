@@ -22,10 +22,10 @@ export const uploadStatements = (data) => async (dispatch) => {
   }
 };
 
-export const getGamerStatements = (id) => async (dispatch) => {
+export const getGamerStatements = (id, bringLie) => async (dispatch) => {
   dispatch({ type: "RETRIEVING_ST_START" });
   try {
-    const statements = await StatementsApi.getGamerStatements(id);
+    const statements = await StatementsApi.getGamerStatements(id, bringLie);
     dispatch({ type: "RETRIEVING_ST_SUCCESS", data: statements.data });
   } catch (error) {
     console.log(error);

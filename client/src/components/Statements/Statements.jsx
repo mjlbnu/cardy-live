@@ -19,7 +19,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
   const [statementId, setStatementId] = useState();
 
   const getUserStatements = async () => {
-    const { data } = await StatementsApi.getGamerStatements(user._id);
+    const { data } = await StatementsApi.getGamerStatements(user._id, true);
     if (data) {
       setUserStatements(data.statements);
       setStatementId(data._id);

@@ -31,8 +31,13 @@ export const saveStatements = async (req, res) => {
 
 export const getGamerStatements = async (req, res) => {
   const gamerId = req.params.id;
+  const bringLie = req.params.bringLie
   try {
-    const statements = await StatementModel.findOne({ userId: gamerId });
+    let statements = await StatementModel.findOne({ userId: gamerId });
+    console.log(bringLie);
+    if (statements && bringLie === 'false') {
+      statements.lie = null;
+    }
     res.status(200).json(statements);
   } catch (error) {
     res.status(500).json({ message: error.message });

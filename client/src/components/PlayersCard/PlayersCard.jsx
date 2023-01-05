@@ -15,7 +15,7 @@ const PlayersCard = () => {
   const handleThrow = async (e) => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
-    dispatch(getGamerStatements(gamerId));
+    dispatch(getGamerStatements(gamerId, false));
     dispatch(startTimer(Config.timerDuration));
   };
 

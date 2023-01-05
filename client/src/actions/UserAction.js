@@ -1,5 +1,4 @@
 import * as UserApi from "../api/UserRequest";
-import * as StatementsApi from "../api/StatementsRequest";
 
 export const getUsers = () => async (dispatch) => {
   dispatch({ type: "RETRIEVING_START" });
