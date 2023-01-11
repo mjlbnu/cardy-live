@@ -34,7 +34,6 @@ export const getGamerStatements = async (req, res) => {
   const bringLie = req.params.bringLie
   try {
     let statements = await StatementModel.findOne({ userId: gamerId });
-    console.log(bringLie);
     if (statements && bringLie === 'false') {
       statements.lie = null;
     }

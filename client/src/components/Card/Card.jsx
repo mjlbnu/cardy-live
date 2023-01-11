@@ -1,10 +1,14 @@
 import React from "react";
 import "./Card.css";
+import { startTimer } from "../../actions/TimerAction";
+import { setLie } from "../../actions/StatementsAction";
 import * as StatementsApi from "../../api/StatementsRequest";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
   const timer = useSelector((state) => state.timerReducer);
+  const { lie }= useSelector((state) => state.lieReducer);
 
   const handleChoose = async (e) => {
     e.preventDefault();
@@ -15,13 +19,20 @@ const Card = (props) => {
     const statement = await StatementsApi.getGamerStatements(userId, true);
     console.log('Correta:', statement.data.lie);
     +e.target.dataset.index === statement.data.lie
-      ? console.log("Acerto miseravi") 
-      : console.log("Erroooou!")
+      ? alert("Acerto miseravi!") 
+      : alert("Erroooou!");
+    dispatch(startTimer(0));
+    dispatch(setLie(statement.data.lie));
   };
 
   return (
     <div className="card">
-      <div className="circle">
+      <div className={`circle ${lie === props.index ? "circle_lie" : ""}`}
+        style={{
+          background: lie === props.index
+            ? "lime"
+            : "linear-gradient(180deg, #f4971a 0%, #f261b0 50%)"
+        }}>
         <h2>{props.index}</h2>
       </div>
       <div className="content">

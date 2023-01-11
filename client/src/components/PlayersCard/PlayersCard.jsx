@@ -4,7 +4,7 @@ import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
-import { getGamerStatements } from "../../actions/StatementsAction";
+import { getGamerStatements, setLie } from "../../actions/StatementsAction";
 import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
 
@@ -15,6 +15,7 @@ const PlayersCard = () => {
   const handleThrow = async (e) => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
+    dispatch(setLie(null));
     dispatch(getGamerStatements(gamerId, false));
     dispatch(startTimer(Config.timerDuration));
   };

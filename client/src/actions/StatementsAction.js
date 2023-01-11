@@ -32,4 +32,8 @@ export const getGamerStatements = (id, bringLie) => async (dispatch) => {
     dispatch({ type: "RETRIEVING_ST_ERROR" });
   }
 };
+
+export const setLie = (lie) => (dispatch) => {
+  dispatch({ type: "SHOW_LIE", lie });
+}
  
