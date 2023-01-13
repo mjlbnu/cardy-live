@@ -6,6 +6,7 @@ import cors from 'cors';
 import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import StatementsRoute from "./Routes/StatementsRoute.js";
+import RankingRoute from "./Routes/RankingRoute.js"
 
 // Routes
 
@@ -34,3 +35,4 @@ mongoose
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/statements", StatementsRoute);
+app.use("/ranking", RankingRoute);
