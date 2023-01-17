@@ -37,14 +37,16 @@ const Card = (props) => {
       </div>
       <div className="content">
         <p>{props.text}</p>
-        <button
-          className="button card-button"
-          data-userid={props.userId}
-          data-index={props.index}
-          onClick={handleChoose}
-        >
-          Choose
-        </button>
+        {lie === null && (
+          <button
+            className="button card-button"
+            data-userid={props.userId}
+            data-index={props.index}
+            onClick={handleChoose}
+          >
+            Choose
+          </button>
+        )}
       </div>
     </div>
   );
