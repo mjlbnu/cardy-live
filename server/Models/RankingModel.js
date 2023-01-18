@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
-const RankingSchema = mongoose.schema(
+const RankingSchema = mongoose.Schema(
   {
-    gameId: {type: String, required: true},
-    userId: {type: String, required: true},
-    points: {type: Number, required: true},
+    gameId: { type: String, required: true },
+    userId: { type: String, required: true },
+    points: { type: Number, required: true },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
 const RankingModel = mongoose.model("Ranking", RankingSchema);

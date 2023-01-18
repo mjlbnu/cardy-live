@@ -8,18 +8,18 @@ import { useDispatch, useSelector } from "react-redux";
 const Card = (props) => {
   const dispatch = useDispatch();
   const timer = useSelector((state) => state.timerReducer);
-  const { lie }= useSelector((state) => state.lieReducer);
+  const { lie } = useSelector((state) => state.lieReducer);
 
   const handleChoose = async (e) => {
     e.preventDefault();
-    
+
     console.log("Tempo:", timer.seconds);
     console.log("Escolheu:", e.target.dataset.index);
     const userId = e.target.dataset.userid;
     const statement = await StatementsApi.getGamerStatements(userId, true);
-    console.log('Correta:', statement.data.lie);
+    console.log("Correta:", statement.data.lie);
     +e.target.dataset.index === statement.data.lie
-      ? alert("Acerto miseravi!") 
+      ? alert("Acerto miseravi!")
       : alert("Erroooou!");
     dispatch(startTimer(0));
     dispatch(setLie(statement.data.lie));
@@ -27,12 +27,15 @@ const Card = (props) => {
 
   return (
     <div className="card">
-      <div className={`circle ${lie === props.index ? "circle_lie" : ""}`}
+      <div
+        className={`circle ${lie === props.index ? "circle_lie" : ""}`}
         style={{
-          background: lie === props.index
-            ? "lime"
-            : "linear-gradient(180deg, #f4971a 0%, #f261b0 50%)"
-        }}>
+          background:
+            lie === props.index
+              ? "lime"
+              : "linear-gradient(180deg, #f4971a 0%, #f261b0 50%)",
+        }}
+      >
         <h2>{props.index}</h2>
       </div>
       <div className="content">
