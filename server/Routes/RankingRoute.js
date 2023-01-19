@@ -1,13 +1,15 @@
 import express from "express";
 
 import {
-  updatePlayerPoints,
   savePlayerPoints,
+  getRanking,
+  getRankingAgr,
 } from "../Controllers/RankingController.js";
 
 const router = express.Router();
 
 router.post("/savepoints", savePlayerPoints);
-router.post("/updatepoints", updatePlayerPoints);
+router.get("/list", getRanking);
+router.get("/listagr", getRankingAgr);
 
 export default router;

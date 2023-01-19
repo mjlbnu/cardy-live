@@ -4,11 +4,15 @@ import { startTimer } from "../../actions/TimerAction";
 import { setLie } from "../../actions/StatementsAction";
 import * as StatementsApi from "../../api/StatementsRequest";
 import { useDispatch, useSelector } from "react-redux";
+import { getRanking, savePlayerPoints } from "../../actions/RankingAction";
+import { useState } from "react";
 
 const Card = (props) => {
   const dispatch = useDispatch();
   const timer = useSelector((state) => state.timerReducer);
   const { lie } = useSelector((state) => state.lieReducer);
+  const { user } = useSelector((state) => state.authReducer.authData);
+  const [hit, setHit] = useState(false);
 
   const handleChoose = async (e) => {
     e.preventDefault();
@@ -18,9 +22,18 @@ const Card = (props) => {
     const userId = e.target.dataset.userid;
     const statement = await StatementsApi.getGamerStatements(userId, true);
     console.log("Correta:", statement.data.lie);
-    +e.target.dataset.index === statement.data.lie
-      ? alert("Acerto miseravi!")
-      : alert("Erroooou!");
+
+    if (+e.target.dataset.index === statement.data.lie) {
+      setHit(true);
+      const playerPoints =  {
+        gameId: "id1",
+        userId: user._id,
+        points: timer.seconds
+      };
+      dispatch(savePlayerPoints(playerPoints));
+      dispatch(getRanking);
+    };
+
     dispatch(startTimer(0));
     dispatch(setLie(statement.data.lie));
   };
@@ -49,6 +62,15 @@ const Card = (props) => {
           >
             Choose
           </button>
+        )}
+        {lie && (
+          <p>Here's the lie!</p>
+        )}
+        {lie && hit && (
+          <p>Acertou miseravi!</p>
+        )}
+        {lie && !hit && (
+          <p>Erroooou!</p>
         )}
       </div>
     </div>

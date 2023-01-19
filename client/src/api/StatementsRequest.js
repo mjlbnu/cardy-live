@@ -8,5 +8,5 @@ export const uploadStatements = (data) =>
 export const getGamerStatements = (id, bringLie) =>
   API.get(`/statements/${id}/gamerstatements/${bringLie}`);
 
-  export const saveStatements = (data) =>
-    API.post("/statements/savestatements", data);
+export const saveStatements = (data) =>
+  API.post("/statements/savestatements", data);
