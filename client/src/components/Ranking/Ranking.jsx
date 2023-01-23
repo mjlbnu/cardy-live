@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Ranking.css";
 import Timer from "../Timer/Timer";
 import { useSelector, useDispatch } from "react-redux";
-import { getRanking } from "../../actions/RankingAction";
+import { getRankingAgr } from "../../actions/RankingAction";
 
 const Ranking = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Ranking = () => {
   };
 
   useEffect(() => {
-    dispatch(getRanking());
+    dispatch(getRankingAgr());
   }, []);
 
   if(!ranking) return null;
@@ -28,8 +28,10 @@ const Ranking = () => {
         : ranking.map((player) => {
           return (
             <div className="player" key={player._id}>
-              <span>{player.userId}</span>
-              <span>{player.points} points</span>
+              <span>{player.firstname}</span>
+              <span>{player.ranking.length > 0
+                ? player.ranking[0].points
+                : 'zero'} points</span>
             </div>
           );
         })}

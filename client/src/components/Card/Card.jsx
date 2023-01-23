@@ -4,7 +4,7 @@ import { startTimer } from "../../actions/TimerAction";
 import { setLie } from "../../actions/StatementsAction";
 import * as StatementsApi from "../../api/StatementsRequest";
 import { useDispatch, useSelector } from "react-redux";
-import { getRanking, savePlayerPoints } from "../../actions/RankingAction";
+import { getRankingAgr, savePlayerPoints } from "../../actions/RankingAction";
 import { useState } from "react";
 
 const Card = (props) => {
@@ -31,7 +31,7 @@ const Card = (props) => {
         points: timer.seconds
       };
       dispatch(savePlayerPoints(playerPoints));
-      dispatch(getRanking);
+      dispatch(getRankingAgr);
     };
 
     dispatch(startTimer(0));
@@ -45,7 +45,7 @@ const Card = (props) => {
         style={{
           background:
             lie === props.index
-              ? "lime"
+              ? "linear-gradient(180deg, #f41a1a 0%, #690dd3 50%)"
               : "linear-gradient(180deg, #f4971a 0%, #f261b0 50%)",
         }}
       >
@@ -63,13 +63,13 @@ const Card = (props) => {
             Choose
           </button>
         )}
-        {lie && (
+        {lie === props.index && (
           <p>Here's the lie!</p>
         )}
-        {lie && hit && (
+        {lie === props.index && hit && (
           <p>Acertou miseravi!</p>
         )}
-        {lie && !hit && (
+        {lie === props.index && !hit && (
           <p>Erroooou!</p>
         )}
       </div>

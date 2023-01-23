@@ -47,7 +47,7 @@
   flex-direction: column;
   gap: 1.5rem;
   position: absolute;
-  bottom: 50px;
+  top: 250px;
   /*page-break-after: 20px;*/
   text-align: center;
   font-size: 18px;
