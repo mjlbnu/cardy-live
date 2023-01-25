@@ -8,6 +8,12 @@ import Statements from "../Statements/Statements";
 function ProfileCard() {
   const [modalOpened, setModalOpened] = useState(false);
   const [modalStOpened, setModalStOpened] = useState(false);
+  const [ userInfo, setUserInfo ] = useState({
+    firstname: "",
+    lastname: "",
+    points: "0",
+    role: "player"
+  });
 
   return (
     <div className="ProfileCard">
@@ -35,7 +41,9 @@ function ProfileCard() {
         <hr />
       </div>
       <span onClick={() => setModalOpened(true)}>My Profile</span>
-      <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
+      <ProfileModal
+        modalOpened={modalOpened}
+        setModalOpened={setModalOpened} />
       <span onClick={() => setModalStOpened(true)}>My Statements</span>
       <Statements
         modalStOpened={modalStOpened}

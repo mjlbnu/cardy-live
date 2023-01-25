@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 // @desc   Get all users
 // @route  GET /user/list
 // @access Public
-export const getUsers = async (req, res) => {
+export const getUsers = async (_, res) => {
   try {
     let users = await UserModel.find();
     if (users) {
@@ -35,6 +35,7 @@ export const getUser = async (req, res) => {
   }
 };
 
+/*
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const { currentUserId, currentUserAdminStatus, password } = req.body;
@@ -56,6 +57,20 @@ export const updateUser = async (req, res) => {
   }
   res.status(403).json("Access Denied");
 };
+*/
+
+export const updateUser = async (req, res) => {
+  const id = req.body._id;
+
+  try {
+    const user = await UserModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 export const deleteUser = async (req, res) => {
   const id = req.params.id;
@@ -71,3 +86,37 @@ export const deleteUser = async (req, res) => {
   }
   res.status(403).json("Access Denied");
 };
+
+export const getUserProfile = async (req, res) => {
+  try {
+    const profile = await UserModel.aggregate([
+      { $match : { firstname : "dex" } },
+      {
+        $project: {
+          _id: {
+            $toString: "$_id",
+          },
+          firstname: 1,
+        },
+      },
+      {
+        $lookup: {
+          from: "rankings",
+          localField: "_id",
+          foreignField: "userId",
+          as: "ranking",
+          pipeline: [
+            {
+              $project: {
+                points: 1,
+              },
+            },
+          ],
+        },
+      },
+    ]);
+    res.status(200).json(profile);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}

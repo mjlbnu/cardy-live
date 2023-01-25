@@ -21,3 +21,22 @@
 .player > span:nth-of-type(2) {
   font-size: 13px;
 }
+
+@keyframes pulse {
+  0% {
+    transform: translateY(-1);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 500ms linear;
+}
+
+.hide {
+  display: none;
+}
