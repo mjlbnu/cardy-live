@@ -17,11 +17,8 @@ const Card = (props) => {
   const handleChoose = async (e) => {
     e.preventDefault();
 
-    console.log("Tempo:", timer.seconds);
-    console.log("Escolheu:", e.target.dataset.index);
     const userId = e.target.dataset.userid;
     const statement = await StatementsApi.getGamerStatements(userId, true);
-    console.log("Correta:", statement.data.lie);
 
     if (+e.target.dataset.index === statement.data.lie) {
       setHit(true);
@@ -30,8 +27,7 @@ const Card = (props) => {
         userId: user._id,
         points: timer.seconds
       };
-      dispatch(savePlayerPoints(playerPoints));
-      dispatch(getRankingAgr);
+      await dispatch(savePlayerPoints(playerPoints));
     };
 
     dispatch(startTimer(0));

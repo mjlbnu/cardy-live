@@ -6,7 +6,9 @@ import bcrypt from "bcrypt";
 // @access Public
 export const getUsers = async (req, res) => {
   try {
+    console.log("getUsers");
     let users = await UserModel.find();
+    console.log(users);
     if (users) {
       users = users.map((user) => {
         const { password, ...otherInfo } = user._doc;
@@ -35,6 +37,7 @@ export const getUser = async (req, res) => {
   }
 };
 
+/*
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const { currentUserId, currentUserAdminStatus, password } = req.body;
@@ -56,7 +59,20 @@ export const updateUser = async (req, res) => {
   }
   res.status(403).json("Access Denied");
 };
+*/
 
+export const updateUser = async (req, res) => {
+  const id = req.body._id;
+
+  try {
+    const user = await UserModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 export const deleteUser = async (req, res) => {
   const id = req.params.id;
   const { currentUserId, currentUserAdminStatus } = req.body;

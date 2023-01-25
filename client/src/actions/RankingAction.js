@@ -6,7 +6,6 @@ export const savePlayerPoints = (data) => async (dispatch) => {
     const savedPlayerPoints = await RankingApi.savePlayerPoints(data);
     dispatch({ type: "SAVE_R_SUCCESS", data: savedPlayerPoints.data })
   } catch (error) {
-    console.log(error);
     dispatch({ type: "SAVE_R_ERROR" })
   }
 }

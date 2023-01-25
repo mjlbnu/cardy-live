@@ -6,6 +6,7 @@ import { getRankingAgr } from "../../actions/RankingAction";
 
 const Ranking = () => {
   const dispatch = useDispatch();
+  const { lie } = useSelector((state) => state.lieReducer);
   const timer = useSelector((state) => state.timerReducer);
   const { ranking, loading } = useSelector((state) => state.rankingReducer);
 
@@ -15,7 +16,7 @@ const Ranking = () => {
 
   useEffect(() => {
     dispatch(getRankingAgr());
-  }, []);
+  }, [lie]);
 
   if(!ranking) return null;
 
