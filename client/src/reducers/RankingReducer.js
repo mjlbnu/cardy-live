@@ -13,7 +13,7 @@ const rankingReducer = (
         error: false,
       };
     case "RETRIEVING_RA_ERROR":
-      return { ...state, loading: false, error: true};
+      return { ...state, loading: false, error: true };
     default:
       return state;
   }

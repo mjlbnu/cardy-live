@@ -4,12 +4,12 @@ export const savePlayerPoints = (data) => async (dispatch) => {
   dispatch({ type: "SAVE_R_START" });
   try {
     const savedPlayerPoints = await RankingApi.savePlayerPoints(data);
-    dispatch({ type: "SAVE_R_SUCCESS", data: savedPlayerPoints.data })
+    dispatch({ type: "SAVE_R_SUCCESS", data: savedPlayerPoints.data });
   } catch (error) {
     console.log(error);
-    dispatch({ type: "SAVE_R_ERROR" })
+    dispatch({ type: "SAVE_R_ERROR" });
   }
-}
+};
 
 export const getRanking = () => async (dispatch) => {
   dispatch({ type: "RETRIEVING_R_START" });
@@ -30,4 +30,3 @@ export const getRankingAgr = () => async (dispatch) => {
     dispatch({ type: "RETRIEVING_RA_ERROR" });
   }
 };
-

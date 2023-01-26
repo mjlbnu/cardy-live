@@ -24,7 +24,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
       setUserStatements(data.statements);
       setStatementId(data._id);
       setItsaLie(+data.lie);
-    } 
+    }
   };
 
   useEffect(() => {
@@ -171,17 +171,17 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
             </button>
           </div>
           <div className="send-statement">
-          <span
-            style={{
-              display: itsALie > 0 ? "none" : "block",
-              color: "red",
-              fontSize: "12px",
-              alignSelf: "flex-end",
-              marginRight: "5px",
-            }}
-          >
-            * select the lie!
-          </span>
+            <span
+              style={{
+                display: itsALie > 0 ? "none" : "block",
+                color: "red",
+                fontSize: "12px",
+                alignSelf: "flex-end",
+                marginRight: "5px",
+              }}
+            >
+              * select the lie!
+            </span>
             <button
               className="button st-button"
               onClick={handleSubmit}

@@ -35,12 +35,13 @@ const Ranking = () => {
       return (
         <div className="player pulse" key={player._id} id={player._id}>
           <span>{player.firstname}</span>
-          <span>{player.ranking.length > 0
-            ? player.ranking[0].points
-            : 'zero'} points</span>
+          <span>
+            {player.ranking.length > 0 ? player.ranking[0].points : "zero"}{" "}
+            points
+          </span>
         </div>
       );
-    })
+    });
   };
 
   useEffect(() => {
@@ -48,16 +49,13 @@ const Ranking = () => {
     //showRanking(ranking);
   }, [lie]);
 
-  if(!ranking) return null;
+  if (!ranking) return null;
 
   return (
     <div className="Ranking">
       {renderTimer()}
       <h3>Ranking</h3>
-      {loading
-        ? "Fetching ranking"
-        : createRanking()
-      }
+      {loading ? "Fetching ranking" : createRanking()}
     </div>
   );
 };

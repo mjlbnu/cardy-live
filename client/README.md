@@ -5,6 +5,10 @@
 2:20:04 Infocard 2:23:37
 2:18:00 Logout
 
+### Format all files with prettier:
+
+npx prettier --write .
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,5 +1,4 @@
-export const Config = 
-{
-  "timerDuration": 10,
-  "timerBlack": 5
-}
+export const Config = {
+  timerDuration: 10,
+  timerBlack: 5,
+};

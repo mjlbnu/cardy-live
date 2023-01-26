@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./Auth.css";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { logIn, signUp } from "../../actions/AuthAction";
 
 const Auth = () => {
@@ -26,7 +26,9 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignUp) {
-      data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
+      data.password === data.confirmpass
+        ? dispatch(signUp(data))
+        : setConfirmPass(false);
       return;
     }
     dispatch(logIn(data));
@@ -272,7 +274,11 @@ const Auth = () => {
           >
             * Confirm Password is not same
           </span>
-          <button className="button infoButton" type="submit" disabled={loading}>
+          <button
+            className="button infoButton"
+            type="submit"
+            disabled={loading}
+          >
             {loading ? "Processing..." : isSignUp ? "Signup" : "Login"}
           </button>
           <div>

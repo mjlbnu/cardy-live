@@ -1,7 +1,7 @@
 import StatementModel from "../Models/StatementsModel.js";
 
 export const saveStatements = async (req, res) => {
-  const {id, currentUserId, gameId, statements, lie} = req.body;
+  const { id, currentUserId, gameId, statements, lie } = req.body;
 
   if (!id) {
     const newStatements = new StatementModel({
@@ -20,21 +20,21 @@ export const saveStatements = async (req, res) => {
   }
   try {
     const statementsFound = await StatementModel.findById(id);
-      await statementsFound.updateOne({
-        $set: { statements: statements, lie: lie },
-      });
-      res.status(200).json("Statements updated");
+    await statementsFound.updateOne({
+      $set: { statements: statements, lie: lie },
+    });
+    res.status(200).json("Statements updated");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
 
 export const getGamerStatements = async (req, res) => {
   const gamerId = req.params.id;
-  const bringLie = req.params.bringLie
+  const bringLie = req.params.bringLie;
   try {
     let statements = await StatementModel.findOne({ userId: gamerId });
-    if (statements && bringLie === 'false') {
+    if (statements && bringLie === "false") {
       statements.lie = null;
     }
     res.status(200).json(statements);

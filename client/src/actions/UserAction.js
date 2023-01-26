@@ -11,11 +11,11 @@ export const getUsers = () => async (dispatch) => {
 };
 
 export const saveUserInfo = (data) => async (dispatch) => {
-  dispatch({ type: "SAVE_U_START "});
+  dispatch({ type: "SAVE_U_START " });
   try {
     const user = await UserApi.saveUser(data);
     dispatch({ type: "SAVE_U_SUCCESS", data: user.data });
   } catch (error) {
     dispatch({ type: "SAVE_U_FAIL" });
   }
-}
+};

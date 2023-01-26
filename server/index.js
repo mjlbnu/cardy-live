@@ -2,11 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from 'cors'; 
+import cors from "cors";
 import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import StatementsRoute from "./Routes/StatementsRoute.js";
-import RankingRoute from "./Routes/RankingRoute.js"
+import RankingRoute from "./Routes/RankingRoute.js";
 
 // Routes
 

@@ -22,13 +22,13 @@ const Card = (props) => {
 
     if (+e.target.dataset.index === statement.data.lie) {
       setHit(true);
-      const playerPoints =  {
+      const playerPoints = {
         gameId: "id1",
         userId: user._id,
-        points: timer.seconds
+        points: timer.seconds,
       };
       await dispatch(savePlayerPoints(playerPoints));
-    };
+    }
 
     dispatch(startTimer(0));
     dispatch(setLie(statement.data.lie));
@@ -59,15 +59,9 @@ const Card = (props) => {
             Choose
           </button>
         )}
-        {lie === props.index && (
-          <p>Here's the lie!</p>
-        )}
-        {lie === props.index && hit && (
-          <p>Acertou miseravi!</p>
-        )}
-        {lie === props.index && !hit && (
-          <p>Erroooou!</p>
-        )}
+        {lie === props.index && <p>Here's the lie!</p>}
+        {lie === props.index && hit && <p>Acertou miseravi!</p>}
+        {lie === props.index && !hit && <p>Erroooou!</p>}
       </div>
     </div>
   );

@@ -8,10 +8,10 @@ import * as UserApi from "../../api/UserRequest";
 function ProfileModal({ modalOpened, setModalOpened }) {
   const theme = useMantineTheme();
   const { user } = useSelector((state) => state.authReducer.authData);
-  const [ userInfo, setUserInfo ] = useState({
+  const [userInfo, setUserInfo] = useState({
     firstname: "",
     lastname: "",
-    username: ""
+    username: "",
   });
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ function ProfileModal({ modalOpened, setModalOpened }) {
     console.log(data);
     if (data) {
       setUserInfo(data);
-    } 
+    }
   };
 
   useEffect(() => {
@@ -29,9 +29,9 @@ function ProfileModal({ modalOpened, setModalOpened }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserInfo(userInfo => ({
+    setUserInfo((userInfo) => ({
       ...userInfo,
-      [name]: value
+      [name]: value,
     }));
   };
 

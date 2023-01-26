@@ -1,7 +1,7 @@
 import * as StatementsApi from "../api/StatementsRequest";
 
 export const saveStatements = (data) => async (dispatch) => {
-  dispatch({ type: "SAVE_START "});
+  dispatch({ type: "SAVE_START " });
   try {
     const savedStatements = await StatementsApi.saveStatements(data);
     dispatch({ type: "SAVE_SUCCESS", data: savedStatements.data });
@@ -9,7 +9,7 @@ export const saveStatements = (data) => async (dispatch) => {
     console.log(error);
     dispatch({ type: "SAVE_FAIL" });
   }
-}
+};
 
 export const uploadStatements = (data) => async (dispatch) => {
   dispatch({ type: "UPLOAD_START" });
@@ -35,5 +35,4 @@ export const getGamerStatements = (id, bringLie) => async (dispatch) => {
 
 export const setLie = (lie) => (dispatch) => {
   dispatch({ type: "SHOW_LIE", lie });
-}
- 
+};

@@ -44,8 +44,7 @@ function Timer() {
           className={`${seconds > 0 ? "progressbar animate" : ""} ${
             seconds > Config.timerBlack ? "pb-color-1" : "pb-color-2"
           }`}
-        >
-        </div>
+        ></div>
       </div>
     </div>
   );

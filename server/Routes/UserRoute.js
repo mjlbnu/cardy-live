@@ -5,7 +5,7 @@ import {
   getUser,
   updateUser,
   getUsers,
-  getUserProfile
+  getUserProfile,
 } from "../Controllers/UserController.js";
 
 const router = express.Router();
@@ -19,6 +19,6 @@ router.post("/updateUser", updateUser);
 router.delete("/id/:id", deleteUser);
 router.get("/list", getUsers);
 
-router.get("/profile/:id", getUserProfile)
+router.get("/profile/:id", getUserProfile);
 
 export default router;

@@ -7,11 +7,11 @@ const CardsContainer = () => {
   const { statements, loading } = useSelector(
     (state) => state.statementsReducer
   );
-  
+
   if (!statements) return null;
-  
+
   const userId = statements.userId;
-  
+
   return (
     <div className="container">
       {loading

@@ -1,5 +1,6 @@
 import UserModel from "../Models/UserModel.js";
 import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 // @desc   Get all users
 // @route  GET /user/list
@@ -88,9 +89,10 @@ export const deleteUser = async (req, res) => {
 };
 
 export const getUserProfile = async (req, res) => {
+  const id = req.params.id;
   try {
     const profile = await UserModel.aggregate([
-      { $match : { firstname : "dex" } },
+      { $match: { _id: new mongoose.Types.ObjectId(id) } },
       {
         $project: {
           _id: {
@@ -119,4 +121,4 @@ export const getUserProfile = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
