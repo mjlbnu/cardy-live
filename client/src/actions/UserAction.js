@@ -19,3 +19,13 @@ export const saveUserInfo = (data) => async (dispatch) => {
     dispatch({ type: "SAVE_U_FAIL" });
   }
 };
+
+export const getProfile = (data) => async (dispatch) => {
+  dispatch({  type: "RETRIEVING_PROF_START"});
+  try {
+    const profile = await UserApi.getProfile(data);
+    dispatch({ type: "RETRIEVING_PROF_SUCCESS", data: profile.data});
+  } catch (error) {
+    dispatch({ type: "RETRIEVING_PROF_ERROR"});
+  }
+}

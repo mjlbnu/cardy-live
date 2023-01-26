@@ -38,6 +38,8 @@ function ProfileModal({ modalOpened, setModalOpened }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(saveUserInfo(userInfo));
+    setUserInfo({});
+    setModalOpened(false);
   };
 
   return (

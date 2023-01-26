@@ -99,6 +99,8 @@ export const getUserProfile = async (req, res) => {
             $toString: "$_id",
           },
           firstname: 1,
+          lastname: 2,
+          isAdmin: 3,
         },
       },
       {

@@ -4,16 +4,15 @@ import ProfileImg from "../../img/caco.jpg";
 import "./ProfileCard.css";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import Statements from "../Statements/Statements";
+import { useSelector, useDispatch } from  "react-redux";
 
 function ProfileCard() {
+  const dispatch = useDispatch();
   const [modalOpened, setModalOpened] = useState(false);
   const [modalStOpened, setModalStOpened] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    firstname: "",
-    lastname: "",
-    points: "0",
-    role: "player",
-  });
+  const { profile, loading } = useSelector((state) => state.profileReducer);
+
+if (!profile) return null;
 
   return (
     <div className="ProfileCard">
@@ -22,19 +21,19 @@ function ProfileCard() {
         <img src={ProfileImg} alt="" />
       </div>
       <div className="ProfileName">
-        <span>Marcio JL</span>
-        <span>Software Developer</span>
+        <span>${profile.firstname} ${profile.lastname}</span>
+        <span>Noob</span>
       </div>
       <div className="RoleStatus">
         <hr />
         <div>
           <div className="Role">
-            <span>Game Owner</span>
+            <span>{profile.isAdmin ? "Admin" : "Player"}</span>
             <span>Role</span>
           </div>
           <div className="VerticalLine"></div>
           <div className="Role">
-            <span>6,890</span>
+            <span>{profile.ranking[0].points || "0"}</span>
             <span>Points</span>
           </div>
         </div>
