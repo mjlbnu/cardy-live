@@ -17,7 +17,6 @@ function ProfileModal({ modalOpened, setModalOpened }) {
 
   const getUserInfo = async () => {
     const { data } = await UserApi.getUser(user._id);
-    console.log(data);
     if (data) {
       setUserInfo(data);
     }
@@ -38,7 +37,6 @@ function ProfileModal({ modalOpened, setModalOpened }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(saveUserInfo(userInfo));
-    setUserInfo({});
     setModalOpened(false);
   };
 

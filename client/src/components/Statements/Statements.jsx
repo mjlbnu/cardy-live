@@ -85,7 +85,8 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
   const clearFields = () => {
     firstStatement.current.value =
       secondStatement.current.value =
-      thirdStatement.current.value = "";
+      thirdStatement.current.value =
+        "";
   };
 
   return (
