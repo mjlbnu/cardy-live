@@ -5,6 +5,8 @@
 2:20:04 Infocard 2:23:37
 2:18:00 Logout
 
+// Socket
+
 ### Format all files with prettier:
 
 npx prettier --write .
