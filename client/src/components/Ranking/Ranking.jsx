@@ -14,8 +14,10 @@ const Ranking = () => {
     return <Timer data={timer.seconds} />;
   };
 
-  /*
+  
   const showRanking = (arr) => {
+    console.log(arr.length);
+    console.log(arr[0]);
     const id = document.getElementById(arr[0]._id)
     if (id) {
       console.log(id);
@@ -28,12 +30,12 @@ const Ranking = () => {
       }
     }
   }
-  */
+  
 
   const createRanking = () => {
     return ranking.map((player) => {
       return (
-        <div className="player pulse" key={player._id} id={player._id}>
+        <div className="player hide" key={player._id} id={player._id}>
           <span>{player.firstname}</span>
           <span>
             {player.ranking.length > 0 ? player.ranking[0].points : "zero"}{" "}
@@ -42,6 +44,23 @@ const Ranking = () => {
         </div>
       );
     });
+  };
+
+  
+  const createRanking_Promisse = function () {
+    return new Promise(function (resolve, reject) {
+      resolve (ranking.map((player) => {
+        return (
+          <div className="player hide" key={player._id} id={player._id}>
+            <span>{player.firstname}</span>
+            <span>
+              {player.ranking.length > 0 ? player.ranking[0].points : "zero"}{" "}
+              points
+            </span>
+          </div>
+        );
+      }));
+    })
   };
 
   useEffect(() => {
@@ -55,7 +74,7 @@ const Ranking = () => {
     <div className="Ranking">
       {renderTimer()}
       <h3>Ranking</h3>
-      {loading ? "Fetching ranking" : createRanking()}
+      {loading ? "Fetching ranking" : createRanking_Promisse().then(showRanking(ranking))}
     </div>
   );
 };
