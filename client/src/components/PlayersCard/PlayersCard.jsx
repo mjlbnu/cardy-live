@@ -8,6 +8,7 @@ import { getGamerStatements, setLie } from "../../actions/StatementsAction";
 import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
 import { io } from "socket.io-client";
+import * as StatementsApi from "../../api/StatementsRequest";
 
 const PlayersCard = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,17 @@ const PlayersCard = () => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
     dispatch(setLie(null));
-    dispatch(getGamerStatements(gamerId, false));
+    dispatch(getGamerStatements(gamerId, socket));
     dispatch(startTimer(Config.timerDuration));
+
+    /*
+    try {
+      const statements = await StatementsApi.getGamerStatements(gamerId);
+      socket.current.emit("send-gamerStatements", statements);
+    } catch (err) {
+      console.error(err);
+    }
+    */
   };
 
   useEffect(() => {

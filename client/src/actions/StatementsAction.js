@@ -1,4 +1,5 @@
 import * as StatementsApi from "../api/StatementsRequest";
+import { useRef } from "react";
 
 export const saveStatements = (data) => async (dispatch) => {
   dispatch({ type: "SAVE_START " });
@@ -22,10 +23,11 @@ export const uploadStatements = (data) => async (dispatch) => {
   }
 };
 
-export const getGamerStatements = (id, bringLie) => async (dispatch) => {
+export const getGamerStatements = (id, socket) => async (dispatch) => {
   dispatch({ type: "RETRIEVING_ST_START" });
   try {
-    const statements = await StatementsApi.getGamerStatements(id, bringLie);
+    const statements = await StatementsApi.getGamerStatements(id);
+    socket.current.emit("send-gamerStatements", statements);
     dispatch({ type: "RETRIEVING_ST_SUCCESS", data: statements.data });
   } catch (error) {
     console.log(error);

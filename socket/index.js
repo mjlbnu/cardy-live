@@ -5,6 +5,10 @@ const io = require("socket.io")(8800, {
 });
 
 let activeUsers = [];
+let gamerStatements = {
+  statements: [],
+  userId: null
+};
 
 io.on("connection", (socket) => {
   // add new user
@@ -25,4 +29,12 @@ io.on("connection", (socket) => {
     // send all active users
     io.emit("get-users", activeUsers);
   });
+
+  socket.on("send-gamerStatements", ({ data }) => {
+    gamerStatements.statements.length = 0;
+    gamerStatements.statements = data.statements;
+    gamerStatements.userId = data.userId;
+    console.log(gamerStatements);
+  });
+
 });
