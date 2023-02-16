@@ -4,11 +4,14 @@ import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
-import { getGamerStatements, setLie } from "../../actions/StatementsAction";
+import {
+  getGamerStatements,
+  setGamerStatements,
+  setLie,
+} from "../../actions/StatementsAction";
 import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
 import { io } from "socket.io-client";
-import * as StatementsApi from "../../api/StatementsRequest";
 
 const PlayersCard = () => {
   const dispatch = useDispatch();
@@ -23,15 +26,6 @@ const PlayersCard = () => {
     dispatch(setLie(null));
     dispatch(getGamerStatements(gamerId, socket));
     dispatch(startTimer(Config.timerDuration));
-
-    /*
-    try {
-      const statements = await StatementsApi.getGamerStatements(gamerId);
-      socket.current.emit("send-gamerStatements", statements);
-    } catch (err) {
-      console.error(err);
-    }
-    */
   };
 
   useEffect(() => {
@@ -42,8 +36,13 @@ const PlayersCard = () => {
   useEffect(() => {
     socket.current = io("ws://localhost:8800");
     socket.current.emit("new-user-add", user._id);
+
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
+    });
+
+    socket.current.on("get-gamerStatements", (statements) => {
+      dispatch(setGamerStatements(statements));
     });
   }, [user]);
 
