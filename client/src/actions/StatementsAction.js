@@ -25,6 +25,7 @@ export const uploadStatements = (data) => async (dispatch) => {
 export const getGamerStatements = (id, socket) => async () => {
   try {
     const statements = await StatementsApi.getGamerStatements(id);
+    await StatementsApi.setStatementsPlayed(statements.data._id);
     socket.current.emit("send-gamerStatements", statements);
   } catch (error) {
     console.log(error);

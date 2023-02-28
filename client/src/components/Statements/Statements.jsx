@@ -76,6 +76,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
         thirdStatement.current.value,
       ],
       lie: itsALie,
+      played: false,
     };
     dispatch(saveStatements(newStatements));
     clearFields();

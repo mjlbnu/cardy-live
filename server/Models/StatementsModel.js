@@ -6,6 +6,7 @@ const StatementSchema = mongoose.Schema(
     userId: { type: String, required: true },
     statements: [],
     lie: { type: Number, required: true },
+    played : Boolean,
   },
   { timestamps: true }
 );

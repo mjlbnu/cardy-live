@@ -10,3 +10,6 @@ export const getGamerStatements = (id, bringLie = false) =>
 
 export const saveStatements = (data) =>
   API.post("/statements/savestatements", data);
+
+export const setStatementsPlayed = (id) =>
+  API.post(`/statements/setstatementsplayed/${id}`);

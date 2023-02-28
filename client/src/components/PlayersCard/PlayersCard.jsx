@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getUsers } from "../../actions/UserAction";
 import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { UilClipboardNotes } from "@iconscout/react-unicons";
+import { UilClipboardNotes, UilClipboardBlank } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
 import {
   getGamerStatements,
@@ -76,11 +76,15 @@ const PlayersCard = () => {
                     </div>
                   </div>
                   <div className="btn-container">
-                    <UilClipboardNotes />
+                    {checkOnlineStatus(user._id) 
+                    ? <UilClipboardNotes color="rgb(28, 153, 24)"/>
+                    : <UilClipboardBlank color="grey"/>
+                    }
                     <button
                       className="button pc-button"
                       data-gamerid={user._id}
                       onClick={handleThrow}
+                      disabled={!checkOnlineStatus(user._id)}
                     >
                       Throw
                     </button>
