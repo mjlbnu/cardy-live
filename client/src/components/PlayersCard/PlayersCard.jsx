@@ -23,7 +23,8 @@ const PlayersCard = () => {
   const handleThrow = async (e) => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
-    dispatch(setLie(null));
+    //dispatch(setLie(null));
+    socket.current.emit("send-setLie");
     dispatch(getGamerStatements(gamerId, socket));
     dispatch(startTimer(Config.timerDuration));
   };
@@ -44,6 +45,11 @@ const PlayersCard = () => {
     socket.current.on("get-gamerStatements", (statements) => {
       dispatch(setGamerStatements(statements));
     });
+
+    socket.current.on("get-setLie"),
+      (lie) => {
+        dispatch(setLie(lie));
+      };
   }, [user]);
 
   const checkOnlineStatus = (userId) => {

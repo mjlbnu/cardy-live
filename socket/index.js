@@ -31,4 +31,8 @@ io.on("connection", (socket) => {
     gamerStatements = data;
     io.emit("get-gamerStatements", gamerStatements);
   });
+
+  socket.on("send-setLie", () => {
+    io.emit("get-setLie", null);
+  });
 });
