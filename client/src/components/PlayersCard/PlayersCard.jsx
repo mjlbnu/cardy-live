@@ -26,7 +26,8 @@ const PlayersCard = () => {
     //dispatch(setLie(null));
     socket.current.emit("send-setLie");
     dispatch(getGamerStatements(gamerId, socket));
-    dispatch(startTimer(Config.timerDuration));
+    //dispatch(startTimer(Config.timerDuration));
+    socket.current.emit("send-setTimer");
   };
 
   useEffect(() => {
@@ -46,10 +47,13 @@ const PlayersCard = () => {
       dispatch(setGamerStatements(statements));
     });
 
-    socket.current.on("get-setLie"),
-      (lie) => {
-        dispatch(setLie(lie));
-      };
+    socket.current.on("get-setLie", (lie) => {
+      dispatch(setLie(lie));
+    });
+
+    socket.current.on("get-setTimer", () => {
+      dispatch(startTimer(Config.timerDuration));
+    });
   }, [user]);
 
   const checkOnlineStatus = (userId) => {
@@ -82,10 +86,11 @@ const PlayersCard = () => {
                     </div>
                   </div>
                   <div className="btn-container">
-                    {checkOnlineStatus(user._id) 
-                    ? <UilClipboardNotes color="rgb(28, 153, 24)"/>
-                    : <UilClipboardBlank color="grey"/>
-                    }
+                    {checkOnlineStatus(user._id) ? (
+                      <UilClipboardNotes color="rgb(28, 153, 24)" />
+                    ) : (
+                      <UilClipboardBlank color="grey" />
+                    )}
                     <button
                       className="button pc-button"
                       data-gamerid={user._id}

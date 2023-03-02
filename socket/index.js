@@ -35,4 +35,8 @@ io.on("connection", (socket) => {
   socket.on("send-setLie", () => {
     io.emit("get-setLie", null);
   });
+
+  socket.on("send-setTimer", () => {
+    io.emit("get-setTimer");
+  });
 });
