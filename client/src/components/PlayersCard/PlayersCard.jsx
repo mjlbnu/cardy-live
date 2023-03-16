@@ -97,7 +97,7 @@ const PlayersCard = () => {
                       onClick={handleThrow}
                       disabled={!checkOnlineStatus(user._id)}
                     >
-                      Throw
+                      Play
                     </button>
                   </div>
                 </div>

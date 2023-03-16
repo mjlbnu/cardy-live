@@ -2,6 +2,40 @@ import UserModel from "../Models/UserModel.js";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 
+export const getPlayers = async (_, res) => {
+  try {
+    const players = await UserModel.aggregate([
+      {
+        $project: {
+          _id: {
+            $toString: "$_id",
+          },
+          firstname: 1,
+          isAdmin: 2,
+        },
+      },
+      {
+        $lookup: {
+          from: "statements",
+          localField: "_id",
+          foreignField: "userId",
+          as: "statement",
+          pipeline: [
+            {
+              $project: {
+                played: 1,
+              },
+            },
+          ],
+        },
+      },
+    ]);
+    res.status(200).json(players);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // @desc   Get all users
 // @route  GET /user/list
 // @access Public
