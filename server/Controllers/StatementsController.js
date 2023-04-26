@@ -103,8 +103,8 @@ export const updateStatements = async (req, res) => {
 export const setStatementsPlayed = async (req, res) => {
   const { id } = req.params;
   try {
-    const statements =  await StatementModel.findById(id)
-    await  statements.updateOne({
+    const statements = await StatementModel.findById(id);
+    await statements.updateOne({
       $set: { played: true },
     });
     res.status(200).json("Statements updated");
@@ -112,4 +112,15 @@ export const setStatementsPlayed = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
+
+export const getAllStatements = async (_, res) => {
+  try {
+    const st = await StatementModel.find();
+    if (st) {
+      return res.status(200).json(st);
+    }
+  } catch (error) {
+    res.status(404).json("No statements found");
+  }
+};

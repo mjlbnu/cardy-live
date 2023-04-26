@@ -1,16 +1,18 @@
 import express from "express";
 
 import {
+  getAllStatements,
   getStatements,
   registerStatements,
   updateStatements,
   getGamerStatements,
   saveStatements,
-  setStatementsPlayed
+  setStatementsPlayed,
 } from "../Controllers/StatementsController.js";
 
 const router = express.Router();
 
+router.get("/all", getAllStatements);
 router.post("/register", registerStatements);
 router.get("/:id", getStatements);
 router.put("/:id", updateStatements);

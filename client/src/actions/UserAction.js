@@ -1,5 +1,17 @@
 import * as UserApi from "../api/UserRequest";
 
+export const getPlayers = () => async (dispatch) => {
+  dispatch({ type: "RETRIEVING_START" });
+  try {
+    const { data } = await UserApi.getPlayers();
+    console.log(data);
+    dispatch({ type: "RETRIEVING_SUCCESS", data: data });
+  } catch (error) {
+    dispatch({ type: "RETRIEVING_ERROR" });
+  }
+};
+
+/*
 export const getUsers = () => async (dispatch) => {
   dispatch({ type: "RETRIEVING_START" });
   try {
@@ -9,7 +21,7 @@ export const getUsers = () => async (dispatch) => {
     dispatch({ type: "RETRIEVING_ERROR" });
   }
 };
-
+*/
 export const saveUserInfo = (data) => async (dispatch) => {
   dispatch({ type: "SAVE_U_START " });
   try {

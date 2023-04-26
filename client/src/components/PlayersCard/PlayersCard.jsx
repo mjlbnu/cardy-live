@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getUsers } from "../../actions/UserAction";
+import { getUsers, getPlayers } from "../../actions/UserAction";
 import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes, UilClipboardBlank } from "@iconscout/react-unicons";
@@ -20,7 +20,7 @@ const PlayersCard = () => {
   const socket = useRef();
   const [onlineUsers, setOnlineUsers] = useState([]);
 
-  const handleThrow = async (e) => {
+  const handlePlay = async (e) => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
     //dispatch(setLie(null));
@@ -31,7 +31,7 @@ const PlayersCard = () => {
   };
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getPlayers());
   }, []);
 
   // Connect to Socket.io
@@ -40,6 +40,8 @@ const PlayersCard = () => {
     socket.current.emit("new-user-add", user._id);
 
     socket.current.on("get-users", (users) => {
+      //dispatch(getPlayers());
+      console.log(`setOnlineUsers: ${users}`);
       setOnlineUsers(users);
     });
 
@@ -94,7 +96,7 @@ const PlayersCard = () => {
                     <button
                       className="button pc-button"
                       data-gamerid={user._id}
-                      onClick={handleThrow}
+                      onClick={handlePlay}
                       disabled={!checkOnlineStatus(user._id)}
                     >
                       Play
