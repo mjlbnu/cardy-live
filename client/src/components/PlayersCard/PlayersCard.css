@@ -65,6 +65,10 @@
   height: 1rem;
 }
 
+.offline-dot {
+  background-color: red;
+}
+
 .btn-container {
   display: flex;
   align-items: center;

@@ -1,7 +1,7 @@
 import StatementModel from "../Models/StatementsModel.js";
 
 export const saveStatements = async (req, res) => {
-  const { id, currentUserId, gameId, statements, lie } = req.body;
+  const { id, currentUserId, gameId, statements, lie, played } = req.body;
 
   if (!id) {
     const newStatements = new StatementModel({
@@ -9,6 +9,7 @@ export const saveStatements = async (req, res) => {
       userId: currentUserId,
       statements: statements,
       lie: lie,
+      played: played,
     });
     try {
       await newStatements.save();
@@ -21,7 +22,7 @@ export const saveStatements = async (req, res) => {
   try {
     const statementsFound = await StatementModel.findById(id);
     await statementsFound.updateOne({
-      $set: { statements: statements, lie: lie },
+      $set: { statements: statements, lie: lie, played: played },
     });
     res.status(200).json("Statements updated");
   } catch (error) {
@@ -96,5 +97,30 @@ export const updateStatements = async (req, res) => {
     res.status(403).json("Action forbidden");
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+export const setStatementsPlayed = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const statements = await StatementModel.findById(id);
+    await statements.updateOne({
+      $set: { played: true },
+    });
+    res.status(200).json("Statements updated");
+    return;
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getAllStatements = async (_, res) => {
+  try {
+    const st = await StatementModel.find();
+    if (st) {
+      return res.status(200).json(st);
+    }
+  } catch (error) {
+    res.status(404).json("No statements found");
   }
 };

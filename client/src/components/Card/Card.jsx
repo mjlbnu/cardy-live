@@ -45,7 +45,12 @@ const Card = (props) => {
               : "linear-gradient(180deg, #f4971a 0%, #f261b0 50%)",
         }}
       >
-        <h2>{props.index}</h2>
+        <h2 style={{ fontSize: lie === props.index ? "1.5rem" : "4.5rem" }}>
+          {lie === props.index && <p>Here's the lie!</p>}
+          {lie === props.index && hit && <p>Acertou miseravi!</p>}
+          {lie === props.index && !hit && <p>Erroooou!</p>}
+          {lie !== props.index && <p>{props.index}</p>}
+        </h2>
       </div>
       <div className="content">
         <p>{props.text}</p>
@@ -59,9 +64,6 @@ const Card = (props) => {
             Choose
           </button>
         )}
-        {lie === props.index && <p>Here's the lie!</p>}
-        {lie === props.index && hit && <p>Acertou miseravi!</p>}
-        {lie === props.index && !hit && <p>Erroooou!</p>}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   updateUser,
   getUsers,
   getUserProfile,
+  getPlayers,
 } from "../Controllers/UserController.js";
 
 const router = express.Router();
@@ -20,5 +21,7 @@ router.delete("/id/:id", deleteUser);
 router.get("/list", getUsers);
 
 router.get("/profile/:id", getUserProfile);
+
+router.get("/players", getPlayers);
 
 export default router;

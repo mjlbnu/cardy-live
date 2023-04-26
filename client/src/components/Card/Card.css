@@ -47,7 +47,7 @@
   flex-direction: column;
   gap: 1.5rem;
   position: absolute;
-  top: 250px;
+  bottom: 50px;
   /*page-break-after: 20px;*/
   text-align: center;
   font-size: 18px;
@@ -56,4 +56,8 @@
 
 .card:hover {
   transform: scale(1);
+}
+
+.card .content p {
+  padding: 0 1em 0 1em;
 }

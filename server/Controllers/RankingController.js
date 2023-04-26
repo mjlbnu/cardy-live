@@ -36,6 +36,11 @@ export const getRankingAgr = async (_, res) => {
           ],
         },
       },
+      {
+        $sort: {
+          "ranking.points": -1,
+        },
+      },
     ]);
     res.status(200).json(ranking);
   } catch (error) {

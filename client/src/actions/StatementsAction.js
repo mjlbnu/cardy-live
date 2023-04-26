@@ -22,17 +22,25 @@ export const uploadStatements = (data) => async (dispatch) => {
   }
 };
 
-export const getGamerStatements = (id, bringLie) => async (dispatch) => {
-  dispatch({ type: "RETRIEVING_ST_START" });
+export const getGamerStatements = (id, socket) => async () => {
   try {
-    const statements = await StatementsApi.getGamerStatements(id, bringLie);
-    dispatch({ type: "RETRIEVING_ST_SUCCESS", data: statements.data });
+    const statements = await StatementsApi.getGamerStatements(id);
+    await StatementsApi.setStatementsPlayed(statements.data._id);
+    socket.current.emit("send-gamerStatements", statements);
   } catch (error) {
     console.log(error);
-    dispatch({ type: "RETRIEVING_ST_ERROR" });
   }
 };
 
 export const setLie = (lie) => (dispatch) => {
   dispatch({ type: "SHOW_LIE", lie });
+};
+
+export const setGamerStatements = (data) => async (dispatch) => {
+  dispatch({ type: "RETRIEVING_ST_START" });
+  try {
+    dispatch({ type: "RETRIEVING_ST_SUCCESS", data: data });
+  } catch (error) {
+    dispatch({ type: "RETRIEVING_ST_ERROR" });
+  }
 };
