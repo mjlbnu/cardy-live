@@ -4,6 +4,8 @@ import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { UilClipboardNotes, UilClipboardBlank } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
+import CardsReady from "../CardsReady/CardsReady";
+import CardsPlayed from "../CardsPlayed/CardsPlayed";
 import {
   getGamerStatements,
   setGamerStatements,
@@ -88,11 +90,13 @@ const PlayersCard = () => {
                     </div>
                   </div>
                   <div className="btn-container">
-                    {checkOnlineStatus(user._id) ? (
+                    <CardsReady />
+                    <CardsPlayed />
+                    {/*checkOnlineStatus(user._id) ? (
                       <UilClipboardNotes color="rgb(28, 153, 24)" />
                     ) : (
                       <UilClipboardBlank color="grey" />
-                    )}
+                    )*/}
                     <button
                       className="button pc-button"
                       data-gamerid={user._id}
