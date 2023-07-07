@@ -29,7 +29,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
 
   useEffect(() => {
     getUserStatements();
-  }, [user._id]);
+  }, []);
 
   const handleChange = (e) => {
     const index = +e.target.dataset.index;
@@ -79,7 +79,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
       played: false,
     };
     dispatch(saveStatements(newStatements));
-    clearFields();
+    //clearFields();
     setModalStOpened(false);
   };
 

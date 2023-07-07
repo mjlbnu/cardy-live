@@ -7,9 +7,12 @@ import { UilSignout } from "@iconscout/react-unicons";
 import { UilEdit } from "@iconscout/react-unicons";
 import Chat from "../../img/comment.png";
 import Ranking from "../Ranking/Ranking";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../actions/AuthAction";
 
 function RightSide() {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   let menuRef = useRef();
 
@@ -20,19 +23,32 @@ function RightSide() {
         console.log(menuRef.current);
       }
     };
-
+/*
     document.addEventListener("mousedown", handler);
 
     return () => {
       document.removeEventListener("mousedown", handler);
-    };
+    };*/
   });
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  }
+
+  function DropdownItem(props) {
+    return (
+      <li className="dropdownItem">
+        {props.img}
+        <a> {props.text} </a>
+      </li>
+    );
+  }
 
   return (
     <div className="RightSide">
       <div className="nav-icons">
         <UilUser />
-        <UilSignout />
+        <UilSignout onClick={handleLogOut}/>
         <UilSetting
           className="menu-trigger"
           onClick={() => {
