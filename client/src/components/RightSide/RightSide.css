@@ -17,6 +17,11 @@
   height: 1.5rem;
 }
 
+.nav-icons-hover:hover {
+  color: rgb(212, 33, 9);
+  cursor: pointer;
+}
+
 :root {
   --primary-bg: #242526;
   --secondary-bg: #fff;
@@ -98,7 +103,7 @@ a {
 
 .dropdown-menu ul li {
   padding: 10px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dropdown-menu ul li:hover a {

@@ -43,7 +43,6 @@ const PlayersCard = () => {
 
     socket.current.on("get-users", (users) => {
       //dispatch(getPlayers());
-      console.log(`setOnlineUsers: ${users}`);
       setOnlineUsers(users);
     });
 

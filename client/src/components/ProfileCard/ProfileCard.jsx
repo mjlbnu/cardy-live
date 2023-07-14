@@ -55,11 +55,6 @@ function ProfileCard() {
             </div>
             <hr />
           </div>
-          <span onClick={() => setModalOpened(true)}>My Profile</span>
-          <ProfileModal
-            modalOpened={modalOpened}
-            setModalOpened={setModalOpened}
-          />
           <span onClick={() => setModalStOpened(true)}>My Statements</span>
           <Statements
             modalStOpened={modalStOpened}

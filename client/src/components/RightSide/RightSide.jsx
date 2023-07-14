@@ -9,9 +9,11 @@ import Chat from "../../img/comment.png";
 import Ranking from "../Ranking/Ranking";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../actions/AuthAction";
+import ProfileModal from "../ProfileModal/ProfileModal";
 
 function RightSide() {
   const [open, setOpen] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   const dispatch = useDispatch();
 
   let menuRef = useRef();
@@ -23,34 +25,32 @@ function RightSide() {
         console.log(menuRef.current);
       }
     };
-/*
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };*/
   });
 
   const handleLogOut = () => {
     dispatch(logOut());
-  }
+  };
 
   function DropdownItem(props) {
     return (
-      <li className="dropdownItem">
+      <li className="dropdownItem" onClick={props.action}>
         {props.img}
         <a> {props.text} </a>
       </li>
     );
   }
 
+  const handleEditProfile = () => {
+    setOpen(!open);
+    setModalOpened(true);
+  };
+
   return (
     <div className="RightSide">
       <div className="nav-icons">
-        <UilUser />
-        <UilSignout onClick={handleLogOut}/>
+        <UilUser className="nav-icons-hover" />
         <UilSetting
-          className="menu-trigger"
+          className="menu-trigger nav-icons-hover"
           onClick={() => {
             setOpen(!open);
           }}
@@ -63,23 +63,26 @@ function RightSide() {
         >
           <ul>
             <DropdownItem img={<UilUser />} text={"My Profile"} />
-            <DropdownItem img={<UilEdit />} text={"Edit Profile"} />
+            <DropdownItem
+              img={<UilEdit />}
+              text={"Edit Profile"}
+              action={handleEditProfile}
+            />
+            <ProfileModal
+              modalOpened={modalOpened}
+              setModalOpened={setModalOpened}
+            />
             <DropdownItem img={<UilSetting />} text={"Settings"} />
-            <DropdownItem img={<UilSignout />} text={"Logout"} />
+            <DropdownItem
+              img={<UilSignout />}
+              text={"Logout"}
+              action={handleLogOut}
+            />
           </ul>
         </div>
       </div>
       <Ranking />
     </div>
-  );
-}
-
-function DropdownItem(props) {
-  return (
-    <li className="dropdownItem">
-      {props.img}
-      <a> {props.text} </a>
-    </li>
   );
 }
 

@@ -79,7 +79,7 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
       played: false,
     };
     dispatch(saveStatements(newStatements));
-    //clearFields();
+    setUserStatements(newStatements.statements);
     setModalStOpened(false);
   };
 
