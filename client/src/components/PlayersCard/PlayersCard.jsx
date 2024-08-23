@@ -64,6 +64,8 @@ const PlayersCard = () => {
     return online ? true : false;
   };
 
+  const isAdmin = () => user.isAdmin;
+
   if (!users) return null;
 
   return (
@@ -89,21 +91,19 @@ const PlayersCard = () => {
                     </div>
                   </div>
                   <div className="btn-container">
-                    <CardsReady />
-                    <CardsPlayed />
-                    {/*checkOnlineStatus(user._id) ? (
-                      <UilClipboardNotes color="rgb(28, 153, 24)" />
-                    ) : (
-                      <UilClipboardBlank color="grey" />
-                    )*/}
+                    {user.statement.length > 0 && (
+                      user.statement[0].played ? <CardsPlayed /> : <CardsReady />
+                    )}
+                    {isAdmin() && (
                     <button
-                      className="button pc-button"
-                      data-gamerid={user._id}
-                      onClick={handlePlay}
-                      disabled={!checkOnlineStatus(user._id)}
+                      className = "button pc-button"
+                      data-gamerid = {user._id}
+                      onClick = {handlePlay}
+                      disabled = {user.statement.length === 0}
                     >
                       Play
                     </button>
+                    )}
                   </div>
                 </div>
                 <hr />
