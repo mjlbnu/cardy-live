@@ -6,6 +6,7 @@ import { UilClipboardNotes, UilClipboardBlank } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
 import CardsReady from "../CardsReady/CardsReady";
 import CardsPlayed from "../CardsPlayed/CardsPlayed";
+import CardsEmpty from "../CardsEmpty/CardsEmpty"
 import {
   getGamerStatements,
   setGamerStatements,
@@ -73,43 +74,44 @@ const PlayersCard = () => {
       {loading
         ? "Fetching players"
         : users.map((user) => {
-            return (
-              <div key={user._id}>
-                <div className="gamer">
-                  <div>
-                    <div
-                      className={`online-dot ${
-                        !checkOnlineStatus(user._id) ? "offline-dot" : ""
+          return (
+            <div key={user._id}>
+              <div className="gamer">
+                <div>
+                  <div
+                    className={`online-dot ${!checkOnlineStatus(user._id) ? "offline-dot" : ""
                       }`}
-                    ></div>
-                    <img src={UserImg} alt="" className="gamer-image" />
-                    <div className="name">
-                      <span>{user.firstname}</span>
-                      <span>
-                        {checkOnlineStatus(user._id) ? "Online" : "Offline"}
-                      </span>
-                    </div>
+                  ></div>
+                  <img src={UserImg} alt="" className="gamer-image" />
+                  <div className="name">
+                    <span>{user.firstname}</span>
+                    <span>
+                      {checkOnlineStatus(user._id) ? "Online" : "Offline"}
+                    </span>
                   </div>
-                  <div className="btn-container">
-                    {user.statement.length > 0 && (
-                      user.statement[0].played ? <CardsPlayed /> : <CardsReady />
-                    )}
-                    {isAdmin() && (
+                </div>
+                <div className="btn-container">
+                  {user.statement.length > 0 ? (
+                    user.statement[0].played ? <CardsPlayed /> : <CardsReady />
+                  ) : (
+                    <CardsEmpty />
+                  )}
+                  {isAdmin() && (
                     <button
-                      className = "button pc-button"
-                      data-gamerid = {user._id}
-                      onClick = {handlePlay}
-                      disabled = {user.statement.length === 0}
+                      className="button pc-button"
+                      data-gamerid={user._id}
+                      onClick={handlePlay}
+                      disabled={user.statement.length === 0}
                     >
                       Play
                     </button>
-                    )}
-                  </div>
+                  )}
                 </div>
-                <hr />
               </div>
-            );
-          })}
+              <hr />
+            </div>
+          );
+        })}
     </div>
   );
 };

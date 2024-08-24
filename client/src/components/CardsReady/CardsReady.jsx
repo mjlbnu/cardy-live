@@ -5,59 +5,61 @@ function CardsReady() {
   return (
     <svg
       width="40"
-      viewBox="0 0 163 192"
+      viewBox="0 0 168 197"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="Group 6">
-        <g id="Rectangle 6" filter="url(#filter0_d_745_554)">
-          <rect
-            x="137.986"
-            y="162.161"
-            width="111.988"
-            height="157.983"
-            rx="10"
-            transform="rotate(171.939 137.986 162.161)"
-            fill="url(#paint0_linear_745_554)"
-          />
-        </g>
-        <g id="Rectangle 5" filter="url(#filter1_d_745_554)">
-          <rect
-            x="123.969"
-            y="176.145"
-            width="111.988"
-            height="157.983"
-            rx="10"
-            transform="rotate(-175.941 123.969 176.145)"
-            fill="url(#paint1_linear_745_554)"
-          />
-        </g>
-        <g id="Rectangle 4" filter="url(#filter2_d_745_554)">
-          <rect
-            x="50.3751"
-            y="0.899719"
-            width="111.988"
-            height="157.983"
-            rx="10"
-            transform="rotate(18.2435 50.3751 0.899719)"
-            fill="url(#paint2_linear_745_554)"
-          />
-        </g>
-        <path
-          id="innerContent"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M77.1922 50.2543L72.5336 46.473L71.6283 45.7382L65.4927 40.758L73.267 39.3405L105.077 33.5408L111.05 32.4517L111.212 38.521L112.079 70.8435L112.291 78.7431L106.155 73.7629L105.25 73.0281L100.591 69.2468L96.8099 73.9054L93.007 78.5906C93.5378 79.1428 94.0439 79.7115 94.5252 80.2951C103.463 91.1326 103.844 107.114 94.6495 118.442L84.1864 131.332L80.4051 135.991L85.0636 139.772L85.9689 140.507L92.1046 145.487L84.3303 146.905L52.5206 152.704L46.5476 153.793L46.3849 147.724L45.5184 115.402L45.3066 107.502L51.4423 112.482L52.3476 113.217L57.0061 116.998L60.7874 112.34L64.5902 107.655C64.0595 107.102 63.5533 106.534 63.072 105.95C54.1341 95.1125 53.7532 79.1313 62.9477 67.8035L73.4109 54.9128L77.1922 50.2543ZM80.9734 45.5957L79.4026 44.3208L105.239 39.61L105.943 65.8633L104.372 64.5883L99.7138 60.807L95.9326 65.4656L66.9506 101.172C60.5353 92.5289 60.5107 80.3267 67.6063 71.5848L81.8507 54.0355L85.632 49.377L80.9734 45.5957ZM76.6238 140.649L78.1946 141.924L52.3579 146.635L51.6541 120.382L53.2248 121.657L57.8834 125.438L61.6647 120.78L90.6467 85.0735C97.0619 93.7163 97.0866 105.918 89.991 114.66L75.7466 132.21L71.9653 136.868L76.6238 140.649Z"
-          fill="#E5E5E5"
+      <g filter="url(#filter0_d_745_567)">
+        <rect
+          x="139.068"
+          y="163.261"
+          width="111.988"
+          height="157.983"
+          rx="10"
+          transform="rotate(171.939 139.068 163.261)"
+          fill="url(#paint0_linear_745_567)"
         />
       </g>
+      <g filter="url(#filter1_d_745_567)">
+        <rect
+          x="125.052"
+          y="177.245"
+          width="111.988"
+          height="157.983"
+          rx="10"
+          transform="rotate(-175.941 125.052 177.245)"
+          fill="url(#paint1_linear_745_567)"
+        />
+      </g>
+      <g filter="url(#filter2_d_745_567)">
+        <rect
+          x="51.4576"
+          y="2"
+          width="111.988"
+          height="157.983"
+          rx="10"
+          transform="rotate(18.2435 51.4576 2)"
+          fill="url(#paint2_linear_745_567)"
+        />
+      </g>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M85.9703 60.3624C79.1966 57.9823 71.776 61.5441 69.3959 68.3179L63.2025 85.9446L54.2269 82.7908C45.89 79.8616 36.7569 84.2453 33.8276 92.5822L22.3039 125.379C19.3746 133.716 23.7584 142.849 32.0953 145.779L49.3926 151.856C57.7295 154.786 66.8625 150.402 69.7918 142.065L76.9797 121.608L83.1249 123.767C89.8987 126.147 97.3193 122.585 99.6993 115.812L111.223 83.0144C113.603 76.2407 110.041 68.8201 103.268 66.44L85.9703 60.3624ZM78.9686 115.947L85.1139 118.106C88.7613 119.388 92.757 117.47 94.0386 113.823L105.562 81.0254C106.844 77.378 104.926 73.3823 101.279 72.1007L83.9813 66.0231C80.3339 64.7416 76.3382 66.6594 75.0566 70.3068L68.8633 87.9335L71.5242 88.8685C79.8611 91.7978 84.2448 100.931 81.3155 109.268L78.9686 115.947ZM39.4884 94.5712C41.3192 89.3606 47.0273 86.6208 52.2379 88.4516L69.5352 94.5292C74.7458 96.36 77.4856 102.068 75.6548 107.279L64.1311 140.076C62.3003 145.286 56.5921 148.026 51.3815 146.196L34.0842 140.118C28.8737 138.287 26.1339 132.579 27.9647 127.368L39.4884 94.5712Z"
+        fill="#F2F2F2"
+      />
+      <path
+        d="M94.8159 67.8885L102.579 45.7952C104.41 40.5847 110.118 37.8448 115.328 39.6756L132.594 45.742C137.804 47.5728 140.544 53.281 138.713 58.4916L127.164 91.3605C125.333 96.5711 119.625 99.3109 114.415 97.4801L104.831 94.1128"
+        stroke="#F2F2F2"
+        stroke-width="6"
+      />
       <defs>
         <filter
-          id="filter0_d_745_554"
-          x="6.25223"
-          y="7.04156"
-          width="138.431"
-          height="177.522"
+          id="filter0_d_745_567"
+          x="3.33472"
+          y="4.14185"
+          width="146.431"
+          height="185.522"
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
@@ -68,6 +70,12 @@ function CardsReady() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
+          <feMorphology
+            radius="4"
+            operator="dilate"
+            in="SourceAlpha"
+            result="effect1_dropShadow_745_567"
+          />
           <feOffset dx="4" dy="4" />
           <feGaussianBlur stdDeviation="2" />
           <feColorMatrix
@@ -77,21 +85,21 @@ function CardsReady() {
           <feBlend
             mode="normal"
             in2="BackgroundImageFix"
-            result="effect1_dropShadow_745_554"
+            result="effect1_dropShadow_745_567"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect1_dropShadow_745_554"
+            in2="effect1_dropShadow_745_567"
             result="shape"
           />
         </filter>
         <filter
-          id="filter1_d_745_554"
-          x="12.9447"
-          y="11.3131"
-          width="129.526"
-          height="172.149"
+          id="filter1_d_745_567"
+          x="10.0272"
+          y="8.41339"
+          width="137.526"
+          height="180.149"
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
@@ -102,6 +110,12 @@ function CardsReady() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
+          <feMorphology
+            radius="4"
+            operator="dilate"
+            in="SourceAlpha"
+            result="effect1_dropShadow_745_567"
+          />
           <feOffset dx="4" dy="4" />
           <feGaussianBlur stdDeviation="2" />
           <feColorMatrix
@@ -111,21 +125,21 @@ function CardsReady() {
           <feBlend
             mode="normal"
             in2="BackgroundImageFix"
-            result="effect1_dropShadow_745_554"
+            result="effect1_dropShadow_745_567"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect1_dropShadow_745_554"
+            in2="effect1_dropShadow_745_567"
             result="shape"
           />
         </filter>
         <filter
-          id="filter2_d_745_554"
-          x="3.54274"
-          y="3.5249"
-          width="158.566"
-          height="187.85"
+          id="filter2_d_745_567"
+          x="0.625244"
+          y="0.625183"
+          width="166.566"
+          height="195.85"
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
@@ -136,6 +150,12 @@ function CardsReady() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
+          <feMorphology
+            radius="4"
+            operator="dilate"
+            in="SourceAlpha"
+            result="effect1_dropShadow_745_567"
+          />
           <feOffset dx="4" dy="4" />
           <feGaussianBlur stdDeviation="2" />
           <feColorMatrix
@@ -145,47 +165,47 @@ function CardsReady() {
           <feBlend
             mode="normal"
             in2="BackgroundImageFix"
-            result="effect1_dropShadow_745_554"
+            result="effect1_dropShadow_745_567"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect1_dropShadow_745_554"
+            in2="effect1_dropShadow_745_567"
             result="shape"
           />
         </filter>
         <linearGradient
-          id="paint0_linear_745_554"
-          x1="193.98"
-          y1="162.161"
-          x2="193.98"
-          y2="320.144"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#F4971A" />
-          <stop offset="1" stop-color="#F261B0" />
-        </linearGradient>
-        <linearGradient
-          id="paint1_linear_745_554"
-          x1="179.963"
-          y1="176.145"
-          x2="179.963"
-          y2="334.128"
+          id="paint0_linear_745_567"
+          x1="195.062"
+          y1="163.261"
+          x2="195.062"
+          y2="321.244"
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#428BCA" />
           <stop offset="1" stop-color="#5542CA" />
         </linearGradient>
         <linearGradient
-          id="paint2_linear_745_554"
-          x1="106.369"
-          y1="0.899719"
-          x2="106.369"
-          y2="158.883"
+          id="paint1_linear_745_567"
+          x1="181.046"
+          y1="177.245"
+          x2="181.046"
+          y2="335.228"
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#39B53F" />
           <stop offset="1" stop-color="#1A8D1F" />
+        </linearGradient>
+        <linearGradient
+          id="paint2_linear_745_567"
+          x1="107.451"
+          y1="2"
+          x2="107.451"
+          y2="159.983"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#F4971A" />
+          <stop offset="1" stop-color="#F261B0" />
         </linearGradient>
       </defs>
     </svg>
