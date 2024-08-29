@@ -23,8 +23,10 @@ function ProfileModal({ modalOpened, setModalOpened }) {
   };
 
   useEffect(() => {
-    getUserInfo();
-  }, [user._id]);
+    if (modalOpened) {
+      getUserInfo();
+    }
+  }, [modalOpened]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

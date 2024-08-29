@@ -16,7 +16,8 @@ import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
 import { io } from "socket.io-client";
 
-const PlayersCard = () => {
+// Recebe o searchTerm como prop
+const PlayersCard = ({ searchTerm }) => {
   const dispatch = useDispatch();
   const { users, loading } = useSelector((state) => state.userReducer);
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -69,11 +70,16 @@ const PlayersCard = () => {
 
   if (!users) return null;
 
+  // Filtra os players
+  const filteredUsers = users.filter((user) =>
+    user.firstname.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="players-card">
       {loading
         ? "Fetching players"
-        : users.map((user) => {
+        : filteredUsers.map((user) => {
           return (
             <div key={user._id}>
               <div className="gamer">

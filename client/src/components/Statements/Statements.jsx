@@ -28,8 +28,10 @@ const Statements = ({ modalStOpened, setModalStOpened }) => {
   };
 
   useEffect(() => {
-    getUserStatements();
-  }, []);
+    if (modalStOpened) {
+      getUserStatements();
+    }
+  }, [modalStOpened]);
 
   const handleChange = (e) => {
     const index = +e.target.dataset.index;
