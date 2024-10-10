@@ -4,6 +4,7 @@ import BoxSearch from "../BoxSearch/BoxSearch";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import "./LeftSide.css";
 import PlayersCard from "../PlayersCard/PlayersCard";
+import { SocketProvider } from "../../context/SocketContext";
 
 const LeftSide = () => {
 
@@ -11,6 +12,7 @@ const LeftSide = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
+    <SocketProvider>
     <div className="LeftSide">
       <Logo />
       <ProfileCard />
@@ -19,6 +21,7 @@ const LeftSide = () => {
       {/* Passa o termo de busca */}
       <PlayersCard searchTerm={searchTerm} />
     </div>
+    </SocketProvider>
   );
 };
 

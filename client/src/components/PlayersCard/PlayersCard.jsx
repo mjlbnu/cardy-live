@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { getUsers, getPlayers } from "../../actions/UserAction";
+import React, { useEffect, useState } from "react";
+import { getPlayers } from "../../actions/UserAction";
 import "./PlayersCard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { UilClipboardNotes, UilClipboardBlank } from "@iconscout/react-unicons";
 import UserImg from "../../img/img1.png";
 import CardsReady from "../CardsReady/CardsReady";
 import CardsPlayed from "../CardsPlayed/CardsPlayed";
@@ -14,57 +13,56 @@ import {
 } from "../../actions/StatementsAction";
 import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
-import { io } from "socket.io-client";
+import { useSocket } from "../../context/SocketContext";
 
 // Recebe o searchTerm como prop
 const PlayersCard = ({ searchTerm }) => {
+  const { socket } = useSocket(); // Acessa o contexto
   const dispatch = useDispatch();
   const { users, loading } = useSelector((state) => state.userReducer);
   const { user } = useSelector((state) => state.authReducer.authData);
-  const socket = useRef();
   const [onlineUsers, setOnlineUsers] = useState([]);
 
-  const handlePlay = async (e) => {
+  const handlePlayButton = async (e) => {
     e.preventDefault();
     const gamerId = e.target.dataset.gamerid;
-    //dispatch(setLie(null));
-    socket.current.emit("send-setLie");
+    socket.emit("send-setLie");
     dispatch(getGamerStatements(gamerId, socket));
-    //dispatch(startTimer(Config.timerDuration));
-    socket.current.emit("send-setTimer");
+    socket.emit("send-setTimer");
   };
 
   useEffect(() => {
     dispatch(getPlayers());
   }, []);
 
-  // Connect to Socket.io
   useEffect(() => {
-    socket.current = io("ws://localhost:8800");
-    socket.current.emit("new-user-add", user._id);
-
-    socket.current.on("get-users", (users) => {
-      //dispatch(getPlayers());
+    socket.emit("new-user-add", user._id);
+    socket.on("get-users", (users) => {
       setOnlineUsers(users);
     });
 
-    socket.current.on("get-gamerStatements", (statements) => {
+    socket.on("get-gamerStatements", (statements) => {
       dispatch(setGamerStatements(statements));
     });
 
-    socket.current.on("get-setLie", (lie) => {
+    socket.on("get-setLie", (lie) => {
       dispatch(setLie(lie));
     });
 
-    socket.current.on("get-setTimer", () => {
+    socket.on("get-setTimer", () => {
       dispatch(startTimer(Config.timerDuration));
     });
+
+    // Limpeza do socket ao desmontar o componente
+    return () => {
+      socket.off("get-users");
+      socket.off("get-gamerStatements");
+      socket.off("get-setLie");
+      socket.off("get-setTimer");
+    };
   }, [user]);
 
-  const checkOnlineStatus = (userId) => {
-    const online = onlineUsers.find((user) => user.userId === userId);
-    return online ? true : false;
-  };
+  const checkOnlineStatus = (userId) => onlineUsers.some((user) => user.userId === userId);
 
   const isAdmin = () => user.isAdmin;
 
@@ -106,7 +104,7 @@ const PlayersCard = ({ searchTerm }) => {
                     <button
                       className="button pc-button"
                       data-gamerid={user._id}
-                      onClick={handlePlay}
+                      onClick={handlePlayButton}
                       disabled={user.statement.length === 0}
                     >
                       Play
