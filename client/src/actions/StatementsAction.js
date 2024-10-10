@@ -44,3 +44,7 @@ export const setGamerStatements = (data) => async (dispatch) => {
     dispatch({ type: "RETRIEVING_ST_ERROR" });
   }
 };
+
+export const resetStatements = () => {
+  return { type: "RESET_STATEMENTS" };
+};

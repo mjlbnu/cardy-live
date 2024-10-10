@@ -1,12 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
 import "./CardsContainer.css";
+import { resetStatements } from "../../actions/StatementsAction";
 
 const CardsContainer = () => {
-  const { statements, loading } = useSelector(
+  const dispatch = useDispatch();
+  const { statements, loading, error } = useSelector(
     (state) => state.statementsReducer
   );
+
+  // Limpa os statements na montagem do componente
+  React.useEffect(() => {
+    dispatch(resetStatements());
+  }, [dispatch]);
+
+  if (loading) {
+    return <div className="container">Fetching statements...</div>;
+  }
+
+  if (error) {
+    return <div className="container">Error fetching statements</div>;
+  }
 
   if (!statements) return null;
 

@@ -14,6 +14,8 @@ const statementsReducer = (
       };
     case "RETRIEVING_ST_ERROR":
       return { ...state, loading: false, error: true };
+    case "RESET_STATEMENTS":
+      return { ...state, statements: null, error: false, loading: false };
     default:
       return state;
   }
