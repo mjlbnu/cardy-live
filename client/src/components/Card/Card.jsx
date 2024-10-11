@@ -4,7 +4,7 @@ import { startTimer } from "../../actions/TimerAction";
 import { setLie } from "../../actions/StatementsAction";
 import * as StatementsApi from "../../api/StatementsRequest";
 import { useDispatch, useSelector } from "react-redux";
-import { getRankingAgr, savePlayerPoints } from "../../actions/RankingAction";
+import { savePlayerPoints } from "../../actions/RankingAction";
 import { useState } from "react";
 
 const Card = (props) => {

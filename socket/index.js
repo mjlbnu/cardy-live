@@ -6,6 +6,7 @@ const io = require("socket.io")(8800, {
 
 let activeUsers = [];
 let gamerStatements = {};
+let usersReady = [];
 
 io.on("connection", (socket) => {
   // add new user
@@ -39,4 +40,10 @@ io.on("connection", (socket) => {
   socket.on("send-setTimer", () => {
     io.emit("get-setTimer");
   });
+
+  socket.on("send-userReady", (data) => {
+    usersReady.push(data);
+    console.log("New user ready", data);
+    io.emit("get-usersReady", usersReady);
+  })
 });
