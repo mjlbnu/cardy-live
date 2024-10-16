@@ -22,6 +22,7 @@ const PlayersCard = ({ searchTerm }) => {
   const { users, loading } = useSelector((state) => state.userReducer);
   const { user } = useSelector((state) => state.authReducer.authData);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [usersReady, setUsersReady] = useState([]);
 
   const handlePlayButton = async (e) => {
     e.preventDefault();
@@ -39,6 +40,11 @@ const PlayersCard = ({ searchTerm }) => {
     socket.emit("new-user-add", user._id);
     socket.on("get-users", (users) => {
       setOnlineUsers(users);
+    });
+
+    socket.on("get-usersReady", (usersReady) => {
+      setUsersReady(usersReady);
+      console.log(usersReady);
     });
 
     socket.on("get-gamerStatements", (statements) => {
@@ -65,6 +71,8 @@ const PlayersCard = ({ searchTerm }) => {
   const checkOnlineStatus = (userId) => onlineUsers.some((user) => user.userId === userId);
 
   const isAdmin = () => user.isAdmin;
+
+  const checkUsersReady = (userId) => usersReady.some((user) => user.userId === userId);
 
   if (!users) return null;
 
@@ -93,6 +101,9 @@ const PlayersCard = ({ searchTerm }) => {
                       {checkOnlineStatus(user._id) ? "Online" : "Offline"}
                     </span>
                   </div>
+                </div>
+                <div className="points">
+                  <span>{checkUsersReady(user._id) ? "Ready" : ""}</span>
                 </div>
                 <div className="btn-container">
                   {user.statement.length > 0 ? (

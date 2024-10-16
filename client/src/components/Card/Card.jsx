@@ -6,6 +6,7 @@ import * as StatementsApi from "../../api/StatementsRequest";
 import { useDispatch, useSelector } from "react-redux";
 import { savePlayerPoints } from "../../actions/RankingAction";
 import { useState } from "react";
+import { useSocket } from "../../context/SocketContext";
 
 const Card = (props) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Card = (props) => {
   const { lie } = useSelector((state) => state.lieReducer);
   const { user } = useSelector((state) => state.authReducer.authData);
   const [hit, setHit] = useState(false);
+  const { socket } = useSocket(); // Acessa o contexto
 
   const handleChoose = async (e) => {
     e.preventDefault();
@@ -20,16 +22,18 @@ const Card = (props) => {
     const userId = e.target.dataset.userid;
     const statement = await StatementsApi.getGamerStatements(userId, true);
 
+    const playerPoints = {
+      gameId: "id1",
+      userId: user._id,
+      points: timer.seconds,
+    };
+
     if (+e.target.dataset.index === statement.data.lie) {
       setHit(true);
-      const playerPoints = {
-        gameId: "id1",
-        userId: user._id,
-        points: timer.seconds,
-      };
       await dispatch(savePlayerPoints(playerPoints));
     }
 
+    socket.emit("send-userReady", playerPoints);
     dispatch(startTimer(0));
     dispatch(setLie(statement.data.lie));
   };

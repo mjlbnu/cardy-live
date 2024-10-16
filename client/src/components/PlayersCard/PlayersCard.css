@@ -75,6 +75,16 @@
   justify-content: space-between;
 }
 
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.points > span:nth-of-type(1) {
+  font-weight: bold;
+}
+
 .players-card > div {
   position: relative;
 }

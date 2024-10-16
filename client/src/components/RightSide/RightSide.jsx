@@ -10,11 +10,13 @@ import Ranking from "../Ranking/Ranking";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../actions/AuthAction";
 import ProfileModal from "../ProfileModal/ProfileModal";
+import { useSocket } from "../../context/SocketContext";
 
 function RightSide() {
   const [open, setOpen] = useState(false);
   const [modalOpened, setModalOpened] = useState(false);
   const dispatch = useDispatch();
+  const { socket } = useSocket(); // Acessa o contexto
 
   let menuRef = useRef();
 
@@ -30,6 +32,10 @@ function RightSide() {
   const handleLogOut = () => {
     dispatch(logOut());
   };
+
+  const handleClearUsersReady = () => {
+    socket.emit("clear-users-ready");
+  }
 
   function DropdownItem(props) {
     return (
@@ -72,7 +78,11 @@ function RightSide() {
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
             />
-            <DropdownItem img={<UilSetting />} text={"Settings"} />
+            <DropdownItem
+             img={<UilSetting />}
+             text={"Settings"} 
+             action={handleClearUsersReady}
+            />
             <DropdownItem
               img={<UilSignout />}
               text={"Logout"}
