@@ -4,4 +4,6 @@
   gap: 1rem;
   align-items: center;
   overflow: auto;
+  padding-left: 1rem;
+  padding-top: 1rem;
 }

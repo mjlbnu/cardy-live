@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Cover from "../../img/cover2.jpg";
 import ProfileImg from "../../img/caco.jpg";
 import "./ProfileCard.css";
-import ProfileModal from "../ProfileModal/ProfileModal";
 import Statements from "../Statements/Statements";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile } from "../../actions/UserAction";
+import RightSide from "../../components/RightSide/RightSide";
+import { UilAngleDown } from "@iconscout/react-unicons";
+import { UilSetting } from "@iconscout/react-unicons";
+import { UilUser } from "@iconscout/react-unicons";
+import { UilSignout } from "@iconscout/react-unicons";
+import { UilEdit, UilBars } from "@iconscout/react-unicons";
+import ProfileModal from "../ProfileModal/ProfileModal";
+import { useSocket } from "../../context/SocketContext";
+import { logOut } from "../../actions/AuthAction";
 
 function ProfileCard() {
   const dispatch = useDispatch();
@@ -13,10 +21,44 @@ function ProfileCard() {
   const [modalStOpened, setModalStOpened] = useState(false);
   const { profile, loading } = useSelector((state) => state.userReducer);
   const { user } = useSelector((state) => state.authReducer.authData);
+  const [open, setOpen] = useState(false);
+  let menuRef = useRef();
+  const { socket } = useSocket(); // Acessa o contexto
 
   useEffect(() => {
     dispatch(getProfile(user._id));
   }, []);
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setOpen(false);
+        console.log(menuRef.current);
+      }
+    };
+  });
+
+  const handleEditProfile = () => {
+    setOpen(!open);
+    setModalOpened(true);
+  };
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
+
+  const handleClearUsersReady = () => {
+    socket.emit("clear-users-ready");
+  }
+
+  function DropdownItem(props) {
+    return (
+      <li className="dropdownItem" onClick={props.action}>
+        {props.img}
+        <a> {props.text} </a>
+      </li>
+    );
+  }
 
   if (!profile) return null;
 
@@ -32,34 +74,49 @@ function ProfileCard() {
           </div>
           <div className="ProfileName">
             <span>
-              {profile[0].firstname} {profile[0].lastname}
+              {profile[0].firstname}
             </span>
-            <span>ProPlayer</span>
-          </div>
-          <div className="RoleStatus">
-            <hr />
-            <div>
-              <div className="Role">
-                <span>{profile[0].isAdmin ? "Admin" : "Player"}</span>
-                <span>Role</span>
-              </div>
-              <div className="VerticalLine"></div>
-              <div className="Role">
-                <span>
-                  {profile[0].ranking.length > 0
-                    ? profile[0].ranking[0].points
-                    : "0"}
-                </span>
-                <span>Points</span>
-              </div>
+            <div className="a-button">
+              <UilAngleDown size="30" onClick={() => {
+                setOpen(!open);
+              }}/>
             </div>
-            <hr />
           </div>
-          <span onClick={() => setModalStOpened(true)}>My Statements</span>
           <Statements
             modalStOpened={modalStOpened}
             setModalStOpened={setModalStOpened}
           />
+          <div className="nav-icons">
+            <div
+              className={`dropdown-menu ${open ? "active" : "inactive"}`}
+              onMouseLeave={() => {
+                setOpen(!open);
+              }}
+            >
+              <ul>
+                <DropdownItem img={<UilUser />} text={"My Profile"} />
+                <DropdownItem
+                  img={<UilEdit />}
+                  text={"Edit Profile"}
+                  action={handleEditProfile}
+                />
+                <ProfileModal
+                  modalOpened={modalOpened}
+                  setModalOpened={setModalOpened}
+                />
+                <DropdownItem
+                  img={<UilSetting />}
+                  text={"Settings"}
+                  action={handleClearUsersReady}
+                />
+                <DropdownItem
+                  img={<UilSignout />}
+                  text={"Logout"}
+                  action={handleLogOut}
+                />
+              </ul>
+            </div>
+          </div>
         </>
       )}
     </div>

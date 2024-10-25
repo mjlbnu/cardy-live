@@ -30,10 +30,10 @@
 
 .ProfileName {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-top: 3rem;
-  gap: 10px;
+  gap: 1px;
 }
 
 .ProfileName > span:nth-of-type(1) {
@@ -83,10 +83,55 @@
   border-left: 2px solid var(--hrColor);
 }
 
-.ProfileCard > span {
+.ProfileCard > div > span {
   font-weight: bold;
   color: orange;
   align-self: center;
-  margin-bottom: 1rem;
+}
+
+.Options {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 10px auto;
+  margin-top: 3rem;
+  margin-bottom: 5px;
+}
+
+.a-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: orange;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--buttonBg);
+  transition: all 100ms ease-out;
+}
+
+.a-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: orange;
+  border-radius: 0.5rem;
+  transition: all 100ms ease-out;
+}
+
+.a-button:hover {
   cursor: pointer;
+  color: orange;
+  background: transparent;
+  animation: bounce 0.6s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(4px);
+  }
 }

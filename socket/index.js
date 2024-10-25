@@ -44,6 +44,13 @@ io.on("connection", (socket) => {
   socket.on("send-userReady", (data) => {
     usersReady.push(data);
     console.log("New user ready", data);
+    //console.log("usersReady", usersReady)
     io.emit("get-usersReady", usersReady);
   })
+
+  socket.on("clear-users-ready", () => {
+    usersReady = [];
+    io.emit("get-usersReady", usersReady);
+    console.log(usersReady);
+  });
 });
