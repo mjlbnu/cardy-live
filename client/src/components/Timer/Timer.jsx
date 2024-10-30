@@ -28,6 +28,7 @@ function Timer() {
   }, [seconds]);
 
   if (seconds === 0) return null;
+
   return (
     <div
       className="timer"
@@ -37,15 +38,12 @@ function Timer() {
       }}
     >
       <div className="label">{seconds}</div>
-      <div className="border">
         <div
           ref={progressbar}
           id="#progressbar"
-          className={`${seconds > 0 ? "progressbar animate" : ""} ${
-            seconds > Config.timerBlack ? "pb-color-1" : "pb-color-2"
-          }`}
+          className={`${seconds > 0 ? "progressbar animate" : ""} ${seconds > Config.timerBlack ? "pb-color-1" : "pb-color-2"
+            }`}
         ></div>
-      </div>
     </div>
   );
 }

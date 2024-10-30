@@ -18,12 +18,8 @@
   line-height: 0.9;
 }
 
-.timer > .border {
-  border: 2px solid #f2f2f2;
-}
-
-.timer > .border > .progressbar {
-  height: 10px;
+.timer > .progressbar {
+  height: 5px;
 }
 
 .animate {
