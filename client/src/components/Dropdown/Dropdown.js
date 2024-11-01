@@ -1,12 +1,12 @@
-// Dropdown.js
 import React, { useRef, useEffect } from "react";
 import { UilUser, UilEdit, UilSetting, UilSignout } from "@iconscout/react-unicons";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import './Dropdown.css';
 
-function Dropdown({ 
+function Dropdown({
     open,
-    setOpen, handleEditProfile,
+    setOpen,
+    handleEditProfile,
     handleClearUsersReady,
     handleLogOut,
     modalOpened,

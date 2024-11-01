@@ -16,9 +16,10 @@
 }
 
 .App {
-  overflow: hidden;
+  overflow: auto;
   color: var(--black);
   background: #f3f3f3;
+  height: 100vh;
 }
 
 .blur {

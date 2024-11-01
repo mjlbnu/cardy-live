@@ -8,7 +8,7 @@ const GameBoard = () => {
   const timer = useSelector((state) => state.timerReducer);
 
   const renderTimer = () => {
-    return <Timer data={timer.seconds} />;
+    //return <Timer data={timer.seconds} />;
   };
 
   return (
