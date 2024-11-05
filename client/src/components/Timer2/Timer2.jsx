@@ -22,7 +22,10 @@ function Timer2({ openTimer, setOpenTimer }) {
   };
 
   useEffect(() => {
-    if (seconds === 0) setOpenTimer(false);
+    if (seconds === 0) {
+      setOpenTimer(false);
+      return null;
+    }
     if (seconds === Config.timerDuration) restartProgressBar();
     const oneSecond = 1000;
     const interval = setInterval(() => {
