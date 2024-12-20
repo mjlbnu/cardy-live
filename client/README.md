@@ -5,7 +5,12 @@
 2:20:04 Infocard 2:23:37
 2:18:00 Logout
 
-// Socket
+docker-compose down
+docker-compose up --build
+
+docker ps
+docker exec -it <container_id> mongosh
+test> db (lista as bases de dados existentes)
 
 ### Format all files with prettier:
 

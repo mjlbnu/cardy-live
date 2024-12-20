@@ -7,6 +7,7 @@ import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import StatementsRoute from "./Routes/StatementsRoute.js";
 import RankingRoute from "./Routes/RankingRoute.js";
+import initializeDatabase from "./init-db.js";
 
 // Routes
 
@@ -20,14 +21,19 @@ app.use(cors());
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO_DB, {
+  .connect(process.env.MONGO_DB_TEST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() =>
+  .then(async () => {
+      console.log("Connected to MongoDB");
+      await initializeDatabase();
+      console.log("Database initialized");
+
     app.listen(process.env.PORT, () =>
       console.log(`Listening at ${process.env.PORT}`)
     )
+  }
   )
   .catch((error) => console.log(error));
 
