@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:800');
+
+.container {
+  margin: auto;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.path--background {
+  fill: rgb(34, 213, 201);
+  stroke: #fff;
+  stroke-width: 0px;
+}
+
+.pulse {
+  fill: rgb(255, 74, 74) !important;
+}
+
+.path--foreground {
+  fill: #eee;
+  stroke: #eee;
+  stroke-width: 2px;
+}
+
+.label {
+  font: 90px "Open Sans", sans-serif;
+  font-weight: 900;
+  text-anchor: middle;
+  fill: rgb(34, 213, 201);
+  transition: font-size 0.5s ease-in-out;
+}
+
+.label.pulse {
+  font-size: 120px;
+  fill: rgb(255, 74, 74);
+  animation: pulse-animation 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
