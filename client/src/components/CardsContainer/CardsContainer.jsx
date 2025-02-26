@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
 import "./CardsContainer.css";
 import { resetStatements } from "../../actions/StatementsAction";
+import Countdown from "../CountDown/CountDown";
 
 const CardsContainer = () => {
   const dispatch = useDispatch();
@@ -28,13 +29,16 @@ const CardsContainer = () => {
   const userId = statements.userId;
 
   return (
-    <div className="container">
-      {loading
-        ? "Fetching statements"
-        : statements.statements.map((statement, index) => {
-            return <Card text={statement} index={index + 1} userId={userId} />;
-          })}
-    </div>
+    <>
+      <Countdown />
+      <div className="container">
+        {loading
+          ? "Fetching statements"
+          : statements.statements.map((statement, index) => {
+              return <Card text={statement} index={index + 1} userId={userId} />;
+            })}
+      </div>
+    </>
   );
 };
 
