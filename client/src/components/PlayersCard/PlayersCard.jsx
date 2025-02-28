@@ -14,6 +14,7 @@ import {
 import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
 import { useSocket } from "../../context/SocketContext";
+import Timer2 from "../Timer2/Timer2";
 
 // Recebe o searchTerm como prop
 const PlayersCard = ({ searchTerm }) => {
@@ -23,6 +24,8 @@ const PlayersCard = ({ searchTerm }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [usersReady, setUsersReady] = useState([]);
+  const [openTimer, setOpenTimer] = useState(false);
+  const timer = useSelector((state) => state.timerReducer);
 
   const handlePlayButton = async (e) => {
     e.preventDefault();
@@ -30,6 +33,7 @@ const PlayersCard = ({ searchTerm }) => {
     socket.emit("send-setLie");
     dispatch(getGamerStatements(gamerId, socket));
     socket.emit("send-setTimer");
+    setOpenTimer(true);
   };
 
   useEffect(() => {
@@ -82,52 +86,55 @@ const PlayersCard = ({ searchTerm }) => {
   );
 
   return (
-    <div className="players-card">
-      {loading
-        ? "Fetching players"
-        : filteredUsers.map((user) => {
-          return (
-            <div key={user._id}>
-              <div className="gamer">
-                <div>
-                  <div
-                    className={`online-dot ${!checkOnlineStatus(user._id) ? "offline-dot" : ""
-                      }`}
-                  ></div>
-                  <img src={UserImg} alt="" className="gamer-image" />
-                  <div className="name">
-                    <span>{user.firstname}</span>
-                    <span>
-                      {checkOnlineStatus(user._id) ? "Online" : "Offline"}
-                    </span>
+    <>
+      <Timer2 data={timer.seconds} openTimer={openTimer} setOpenTimer={setOpenTimer} />
+      <div className="players-card">
+        {loading
+          ? "Fetching players"
+          : filteredUsers.map((user) => {
+            return (
+              <div key={user._id}>
+                <div className="gamer">
+                  <div>
+                    <div
+                      className={`online-dot ${!checkOnlineStatus(user._id) ? "offline-dot" : ""
+                        }`}
+                    ></div>
+                    <img src={UserImg} alt="" className="gamer-image" />
+                    <div className="name">
+                      <span>{user.firstname}</span>
+                      <span>
+                        {checkOnlineStatus(user._id) ? "Online" : "Offline"}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="points">
+                    <span>{checkUsersReady(user._id) ? "Ready" : ""}</span>
+                  </div>
+                  <div className="btn-container">
+                    {user.statement.length > 0 ? (
+                      user.statement[0].played ? <CardsPlayed /> : <CardsReady />
+                    ) : (
+                      <CardsEmpty />
+                    )}
+                    {isAdmin() && (
+                      <button
+                        className="button pc-button"
+                        data-gamerid={user._id}
+                        onClick={handlePlayButton}
+                        disabled={user.statement.length === 0}
+                      >
+                        Play
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className="points">
-                  <span>{checkUsersReady(user._id) ? "Ready" : ""}</span>
-                </div>
-                <div className="btn-container">
-                  {user.statement.length > 0 ? (
-                    user.statement[0].played ? <CardsPlayed /> : <CardsReady />
-                  ) : (
-                    <CardsEmpty />
-                  )}
-                  {isAdmin() && (
-                    <button
-                      className="button pc-button"
-                      data-gamerid={user._id}
-                      onClick={handlePlayButton}
-                      disabled={user.statement.length === 0}
-                    >
-                      Play
-                    </button>
-                  )}
-                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          );
-        })}
-    </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

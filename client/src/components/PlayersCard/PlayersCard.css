@@ -1,12 +1,15 @@
 .players-card {
   width: 100%;
   border-radius: 0.7rem;
-  /*gap: 1rem;*/
   display: flex;
   flex-direction: column;
   font-size: 13px;
   overflow-y: scroll;
   height: 300px;
+}
+
+.players-card::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Edge */
 }
 
 .gamer {
@@ -31,8 +34,6 @@
 .gamer:hover {
   background: #80808038;
   padding: 5px;
-  border: 2px solid var(--orange);
-  cursor: pointer;
 }
 
 .name {

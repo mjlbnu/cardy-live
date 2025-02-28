@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./RightSide.css";
 import { UilSetting } from "@iconscout/react-unicons";
-import { UilHome } from "@iconscout/react-unicons";
 import { UilUser } from "@iconscout/react-unicons";
 import { UilSignout } from "@iconscout/react-unicons";
-import { UilEdit } from "@iconscout/react-unicons";
-import Chat from "../../img/comment.png";
-import Ranking from "../Ranking/Ranking";
+import { UilEdit, UilBars } from "@iconscout/react-unicons";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../actions/AuthAction";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { useSocket } from "../../context/SocketContext";
+import { UilAngleDown } from '@iconscout/react-unicons'
+
 
 function RightSide() {
   const [open, setOpen] = useState(false);
@@ -54,8 +53,7 @@ function RightSide() {
   return (
     <div className="RightSide">
       <div className="nav-icons">
-        <UilUser className="nav-icons-hover" />
-        <UilSetting
+        <UilBars
           className="menu-trigger nav-icons-hover"
           onClick={() => {
             setOpen(!open);
@@ -91,7 +89,6 @@ function RightSide() {
           </ul>
         </div>
       </div>
-      <Ranking />
     </div>
   );
 }

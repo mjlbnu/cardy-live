@@ -1,11 +1,10 @@
 .container {
   max-width: 100%;
-  margin: 0 auto;
   display: grid;
   gap: 1rem;
+  padding: 1rem;
   background-color: var(--cardColor);
   border-radius: 1rem;
-  padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   position: relative;
 }

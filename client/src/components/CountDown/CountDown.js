@@ -5,17 +5,20 @@ import "./CountDown.css";
 const Countdown = ({ timeLimit = 15 }) => {
     const svgRef = useRef(null);
     const [timePassed, setTimePassed] = useState(0);
-    const width = 400;
-    const height = 400;
+    const [isVisible, setIsVisible] = useState(true);
+    const width = 300;
+    const height = 300;
 
     useEffect(() => {
+        if (!isVisible) return;
+
         const svg = d3.select(svgRef.current)
         .attr("width", width)
         .attr("height", height)
         .style("background", "none"); // Torna o svg transparente
 
         const arc = d3.arc()
-            .innerRadius(width / 3 - 55)
+            .innerRadius(width / 3 - 40)
             .outerRadius(width / 3 - 25)
             .startAngle(0);
 
@@ -36,7 +39,7 @@ const Countdown = ({ timeLimit = 15 }) => {
             .attr("class", "path path--foreground");
 
         const label = field.append("text")
-            .attr("class", "label")
+            .attr("class", "c_label")
             .attr("dy", ".35em")
             .text(timeLimit);
 
@@ -46,7 +49,7 @@ const Countdown = ({ timeLimit = 15 }) => {
                 const remaining = timeLimit - newTime;
 
                 path.transition()
-                    .ease(d3.easeElastic)
+                    .ease(d3.easeCubic)
                     .duration(500)
                     .attrTween("d", () => {
                         const interpolate = d3.interpolate({ value: prev }, { value: newTime });
@@ -89,12 +92,14 @@ const Countdown = ({ timeLimit = 15 }) => {
                 .duration(700)
                 .style("opacity", "0")
                 .on("end", function () { d3.select(this).remove(); });
+            
+            setTimeout(() => setIsVisible(false), 700); // Remove a div após a animação
         };
-
         updateTimer();
-    }, [timeLimit]);
+    }, [timeLimit, isVisible]);
 
-    return <div className="container" style={{ background: "none" }}><svg ref={svgRef} style={{ background: "none" }}></svg></div>;
+    if (!isVisible) return null; // Se isVisible for false, não renderiza nada
+    return <div className="c_container" style={{ background: "none" }}><svg ref={svgRef} style={{ background: "none" }}></svg></div>;
 };
 
 export default Countdown;

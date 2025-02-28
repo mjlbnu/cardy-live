@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:800');
 
-.container {
+.c_container {
   margin: auto;
-  width: 400px;
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,16 +24,16 @@
   stroke-width: 2px;
 }
 
-.label {
-  font: 90px "Open Sans", sans-serif;
+.c_label {
+  font: 60px "Open Sans", sans-serif;
   font-weight: 900;
   text-anchor: middle;
   fill: rgb(34, 213, 201);
   transition: font-size 0.5s ease-in-out;
 }
 
-.label.pulse {
-  font-size: 120px;
+.c_label.pulse {
+  font-size: 70px;
   fill: rgb(255, 74, 74);
   animation: pulse-animation 0.9s ease-in-out infinite alternate;
 }
