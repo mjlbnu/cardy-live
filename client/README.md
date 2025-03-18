@@ -10,7 +10,12 @@ docker-compose up --build
  
 docker ps
 docker exec -it <container_id> mongosh
-test> db (lista as bases de dados existentes)
+use admin
+admin> db.auth("root","example")
+admin> show collections
+admin> db.system.users.countDocuments()
+admin> db.system.users.find().pretty()
+
 
 // Socket
 
