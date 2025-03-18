@@ -7,27 +7,36 @@ import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import StatementsRoute from "./Routes/StatementsRoute.js";
 import RankingRoute from "./Routes/RankingRoute.js";
+import initializeDatabase from "./init-db.js";
 
 // Routes
-
 const app = express();
+
+dotenv.config();
+const isUsingDocker = process.env.DOCKER === 'S';
+const mongoUrl = isUsingDocker ? process.env.MONGO_DB_LOCAL : process.env.MONGO_DB;
 
 // Midleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-dotenv.config();
-
 mongoose
-  .connect(process.env.MONGO_DB, {
+  .connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() =>
+  .then(async () => {
+    console.log("Connected to MongoDB");
+    if (isUsingDocker) {
+      await initializeDatabase();
+      console.log("Database initialized");
+    }
+    
     app.listen(process.env.PORT, () =>
       console.log(`Listening at ${process.env.PORT}`)
     )
+  }
   )
   .catch((error) => console.log(error));
 

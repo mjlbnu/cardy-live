@@ -1,0 +1,49 @@
+services:
+   mongodb:
+     image: mongo:6.0
+     container_name: mongodb
+     ports:
+       - "27017:27017"
+     environment:
+       MONGO_INITDB_ROOT_USERNAME: root
+       MONGO_INITDB_ROOT_PASSWORD: example
+ 
+   socket:
+     build:
+       context: ./socket
+     ports:
+       - "8800:8800"
+     volumes:
+       - ./socket:/app
+       - /app/node_modules
+     command: npm start
+     depends_on:
+       - mongodb
+ 
+   server:
+     build:
+       context: ./server
+     ports:
+       - "5000:5000"
+     volumes:
+       - ./server:/app
+       - /app/node_modules
+     command: npm start
+     depends_on:
+       - socket
+ 
+   client:
+     build:
+       context: ./client
+     ports:
+       - "3000:3000"
+     volumes:
+       - ./client:/app
+       - /app/node_modules
+     command: npm start
+     depends_on:
+       - server
+       - socket
+ 
+volumes:
+  mongodb_data:
