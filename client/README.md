@@ -7,17 +7,13 @@
 
 docker-compose down
 docker-compose up --build
- 
 docker ps
 docker exec -it <container_id> mongosh
-use admin
-admin> db.auth("root","example")
-admin> show collections
-admin> db.system.users.countDocuments()
-admin> db.system.users.find().pretty()
-
-
-// Socket
+use mydatabase
+mydatabase> db.auth("root","example")
+mydatabase> show collections
+mydatabase> db.users.countDocuments()
+mydatabase> db.users.find().pretty()
 
 ### Format all files with prettier:
 
