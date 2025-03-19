@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./Auth.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, signUp } from "../../actions/AuthAction";
-import Countdown from "../../components/CountDown/CountDown";
 
 const Auth = () => {
   const dispatch = useDispatch();
@@ -48,7 +47,6 @@ const Auth = () => {
 
   return (
     <>
-    <Countdown/>
     <div className="Auth">
       {/*Left side*/}
       <div className="a-left">
