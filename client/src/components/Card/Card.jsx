@@ -10,7 +10,7 @@ import { useSocket } from "../../context/SocketContext";
 
 const Card = (props) => {
   const dispatch = useDispatch();
-  const timer = useSelector((state) => state.timerReducer);
+  const countdown = useSelector((state) => state.countDownReducer);
   const { lie } = useSelector((state) => state.lieReducer);
   const { user } = useSelector((state) => state.authReducer.authData);
   const [hit, setHit] = useState(false);
@@ -25,7 +25,7 @@ const Card = (props) => {
     const playerPoints = {
       gameId: "id1",
       userId: user._id,
-      points: timer.seconds,
+      points: countdown.seconds,
     };
 
     if (+e.target.dataset.index === statement.data.lie) {

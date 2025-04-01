@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import "./CountDown.css";
+import { setCountDown } from "../../actions/CountDownAction";
+import { useDispatch } from "react-redux";
 
 const Countdown = ({ timeLimit = 15 }) => {
+    const dispatch = useDispatch();
     const svgRef = useRef(null);
     const [timePassed, setTimePassed] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
@@ -62,6 +65,8 @@ const Countdown = ({ timeLimit = 15 }) => {
                     label.classed("pulse", true);
                 }
 
+                dispatch(setCountDown(remaining)); // Atualiza o estado global com o tempo restante
+
                 if (newTime < timeLimit) {
                     setTimeout(updateTimer, 1000);
                 } else {
@@ -95,6 +100,7 @@ const Countdown = ({ timeLimit = 15 }) => {
             
             setTimeout(() => setIsVisible(false), 700); // Remove a div após a animação
         };
+
         updateTimer();
     }, [timeLimit, isVisible]);
 

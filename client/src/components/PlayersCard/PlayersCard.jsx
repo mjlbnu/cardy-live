@@ -14,7 +14,6 @@ import {
 import { startTimer } from "../../actions/TimerAction";
 import { Config } from "../../Config/Config";
 import { useSocket } from "../../context/SocketContext";
-import Timer2 from "../Timer2/Timer2";
 
 // Recebe o searchTerm como prop
 const PlayersCard = ({ searchTerm }) => {
@@ -87,7 +86,6 @@ const PlayersCard = ({ searchTerm }) => {
 
   return (
     <>
-      <Timer2 data={timer.seconds} openTimer={openTimer} setOpenTimer={setOpenTimer} />
       <div className="players-card">
         {loading
           ? "Fetching players"

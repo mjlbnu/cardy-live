@@ -5,6 +5,7 @@ import userReducer from "./UserReducer";
 import timerReducer from "./TimerReducer";
 import lieReducer from "./LieReducer";
 import rankingReducer from "./RankingReducer";
+import countDownReducer from "./CountDownReducer";
 
 export const reducers = combineReducers({
   authReducer,
@@ -13,4 +14,5 @@ export const reducers = combineReducers({
   timerReducer,
   lieReducer,
   rankingReducer,
+  countDownReducer,
 });
