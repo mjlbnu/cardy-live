@@ -18,13 +18,13 @@
 
 .ProfileImages > img:nth-of-type(1) {
   width: 100%;
+  height: 100%;
 }
 
 .ProfileImages > img:nth-of-type(2) {
   width: 6rem;
   border-radius: 50%;
   position: absolute;
-  bottom: -3rem;
   box-shadow: var(--profileShadow);
 }
 
@@ -32,8 +32,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   gap: 1px;
 }
 
@@ -86,7 +85,7 @@
 
 .ProfileCard > div > span {
   font-weight: bold;
-  color: orange;
+  color: #242d49;
   align-self: center;
 }
 
@@ -116,7 +115,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: orange;
+  color: #242d49;
   border-radius: 0.5rem;
   transition: all 100ms ease-out;
 }
@@ -125,7 +124,7 @@
   cursor: pointer;
   color: orange;
   background: transparent;
-  animation: bounce 0.6s infinite alternate;
+  animation: glow 1.5s infinite alternate;
 }
 
 @keyframes bounce {
@@ -134,5 +133,26 @@
   }
   to {
     transform: translateY(4px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px var(--buttonBg), 0 0 10px var(--buttonBg);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--buttonBg), 0 0 30px var(--buttonBg);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--buttonBg), 0 0 10px var(--buttonBg);
   }
 }

@@ -5,7 +5,7 @@ import "./ProfileCard.css";
 import Statements from "../Statements/Statements";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile } from "../../actions/UserAction";
-import { UilAngleDown } from "@iconscout/react-unicons";
+import { UilBars } from "@iconscout/react-unicons";
 import { useSocket } from "../../context/SocketContext";
 import { logOut } from "../../actions/AuthAction";
 import Dropdown from "../Dropdown/Dropdown";
@@ -63,9 +63,9 @@ function ProfileCard() {
               {profile[0].firstname}
             </span>
             <div className="a-button">
-              <UilAngleDown size="30" onClick={() => {
+              <UilBars onClick={() => {
                 setOpen(!open);
-              }} />
+              }} /> 
             </div>
           </div>
           <Statements
