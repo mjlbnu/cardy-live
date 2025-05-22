@@ -3,6 +3,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  position: relative;
 }
 
 .tabs {
@@ -15,13 +16,19 @@ button {
   padding: 10px 20px;
   cursor: pointer;
   border: none;
-  background-color: #f0f0f0;
+  background-color: transparent;
   font-weight: bold;
+  color: rgb(83, 83, 83);
 }
 
 button.active {
   background-color: #007bff;
   color: #fff;
+  cursor: default;
+}
+
+button:hover:not(.active) {
+  color: black;
 }
 
 input {
@@ -61,7 +68,6 @@ img {
 .output {
   margin-top: 20px;
   text-align: left;
-  background-color: #f4f4f4;
   padding: 10px;
   border-radius: 5px;
 }
