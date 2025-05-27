@@ -8,6 +8,7 @@ import {
   getGamerStatements,
   saveStatements,
   setStatementsPlayed,
+  saveStatementsList,
 } from "../Controllers/StatementsController.js";
 
 const router = express.Router();
@@ -19,5 +20,6 @@ router.put("/:id", updateStatements);
 router.get("/:id/gamerstatements/:bringLie", getGamerStatements);
 router.post("/savestatements", saveStatements);
 router.post("/setstatementsplayed/:id", setStatementsPlayed);
+router.post("/save-statements-list", saveStatementsList);
 
 export default router;

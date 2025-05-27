@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import './Ai.css';
-import TalkWithAi from '../../components/Ai/TalkWithAi/TalkWithAi.jsx';
-import StatementsGenerator from '../../components/Ai/StatementsGenerator/StatementsGenerator.jsx';
-import ImageGenerator from '../../components/Ai/ImageGenerator/ImageGenerator.jsx';
+import './AI.css';
+import TalkWithAi from '../components/TalkWithAi/TalkWithAi.jsx';
+import StatementsGenerator from '../components/StatementsGenerator/StatementsGenerator.jsx';
+import ImageGenerator from '../components/ImageGenerator/ImageGenerator.jsx';
 
-function Ai() {
+function AI() {
 
     const [activeTab, setActiveTab] = useState('ask-ai');
 
@@ -37,4 +37,4 @@ function Ai() {
     );
 }
 
-export default Ai;
+export default AI;

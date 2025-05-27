@@ -1,7 +1,7 @@
 import "./App.css";
 import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home/Home";
-import Ai from "./pages/Ai/Ai";
+import Ai from "./features/AI/pages/AI";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 

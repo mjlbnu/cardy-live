@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import api from '../../../api/AiRequest';
+import * as api from '../../api/AiRequest';
 import './TalkWithAi.css';
 
 function TalkWithAi() {
@@ -11,9 +11,7 @@ function TalkWithAi() {
     const askAI = async () => {
         setLoading(true);
         try {
-            const response = await api.get(`/ask-ai-with-options`, {
-                params: { prompt }
-            });
+            const response = await api.getAIResponse(prompt.trim());
             const data = response.data;
             setResponse(data);
         } catch (error) {
