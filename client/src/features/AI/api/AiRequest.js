@@ -20,6 +20,6 @@ export const getAIResponse = async (prompt) => {
   });
 }
 
-export const saveStatementsList = async (data) => {
-  return await nodeAPI.post("/statements/save-statements-list", data);
+export const createPlayers = async (data) => {
+  return await nodeAPI.post("/create-players", data);
 }

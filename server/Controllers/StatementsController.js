@@ -1,23 +1,5 @@
 import StatementModel from "../Models/StatementsModel.js";
 
-export const saveStatementsList = async (statementsList, res) => {
-  statementsList.forEach(async (statement) => {
-    const newStatements = new StatementModel({
-      gameId: statement.gameId,
-      userId: statement.userId,
-      statements: statement.statements,
-      lie: statement.lie,
-      played: statement.played,
-    });
-    try {
-      await newStatements.save();
-      res.status(200).json({ message: "Statements list saved successfully" });
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  });
-};
-
 export const saveStatements = async (req, res) => {
   const { id, currentUserId, gameId, statements, lie, played } = req.body;
 

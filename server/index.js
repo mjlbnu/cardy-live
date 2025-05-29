@@ -8,6 +8,7 @@ import UserRoute from "./Routes/UserRoute.js";
 import StatementsRoute from "./Routes/StatementsRoute.js";
 import RankingRoute from "./Routes/RankingRoute.js";
 import initializeDatabase from "./init-db.js";
+import AIRoute from "./Routes/AIRoute.js";
 
 // Routes
 const app = express();
@@ -45,3 +46,4 @@ app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/statements", StatementsRoute);
 app.use("/ranking", RankingRoute);
+app.use("/ai", AIRoute);
