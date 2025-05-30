@@ -9,8 +9,7 @@ function StatementsGenerator() {
         setLoading(true);
         try {
             const response = await service.generateStatements(names);
-            const data = response;
-            console.log("Generated Statements:", data);
+            console.log("Generated Statements:", response);
         } catch (error) {
             console.error("Error fetching AI response:", error);
         } finally {
