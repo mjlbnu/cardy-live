@@ -12,3 +12,14 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+.ask-ai-button{
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.ask-ai-button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}

@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import * as service from '../../services/AiService';
+import './StatementsGenerator.css';
 
 function StatementsGenerator() {
     const [names, setNames] = useState("");
     const [loading, setLoading] = useState(false);
 
     const generateStatements = async () => {
+        if (!names.trim()) {
+            alert("Please enter at least one name.");
+            return;
+        }
         setLoading(true);
         try {
-            const response = await service.generateStatements(names);
+            const response = await service.generateStatements(names.trim());
             console.log("Generated Statements:", response);
         } catch (error) {
             console.error("Error fetching AI response:", error);
@@ -19,7 +24,7 @@ function StatementsGenerator() {
 
     return (
         <div className='StatementsGenerator'>
-            <h2>Statements generator</h2>
+            <h2>Players generator</h2>
             <input
                 type='text'
                 value={names}
@@ -30,7 +35,7 @@ function StatementsGenerator() {
             {loading ? (
                 <span className="loader"></span>
             ) : (
-                <button
+                <button className='generate-statements-button'
                     onClick={generateStatements}
                     disabled={loading}>
                     Generate statements

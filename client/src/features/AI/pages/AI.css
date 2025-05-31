@@ -27,14 +27,20 @@ button.active {
   cursor: default;
 }
 
+/*
 button:hover:not(.active) {
-  color: black;
-}
+  background-color: #0056b3;
+  color: #fff;
+}*/
+
 
 input {
   padding: 10px;
   width: calc(100% - 22px);
   margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
@@ -82,4 +88,9 @@ img {
   line-height: 1.6; /* Improves readability */
   border: 1px solid #ccc; /* Optional: adds a border around the text container */
   margin-bottom: 20px; /* Spacing below the text container */
+}
+
+ h2 {
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

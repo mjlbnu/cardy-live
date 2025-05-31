@@ -12,3 +12,14 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+.generate-statements-button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.generate-statements-button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}

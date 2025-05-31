@@ -22,7 +22,7 @@ function AI() {
             </button>
             <button
                 className={activeTab === "statements-generator" ? "active" : ""}
-                onClick={() => handleTabChange("statements-generator")}>Generate Statements
+                onClick={() => handleTabChange("statements-generator")}>Generate Players
             </button>
             <button
                 className={activeTab === "image-generator" ? "active" : ""}
