@@ -1,9 +1,27 @@
-import { useState } from 'react';
 import * as api from '../../api/AiRequest';
 import './TalkWithAi.css';
+import { useEffect, useState } from 'react';
+
+// TypewriterText fora da função principal
+function TypewriterText({ text, speed = 30 }) {
+    const [displayed, setDisplayed] = useState('');
+
+    useEffect(() => {
+        setDisplayed('');
+        if (!text) return;
+        let i = 0;
+        const interval = setInterval(() => {
+            setDisplayed((prev) => prev + text[i]);
+            i++;
+            if (i >= text.length) clearInterval(interval);
+        }, speed);
+        return () => clearInterval(interval);
+    }, [text, speed]);
+
+    return <p className="typewriter">{displayed}</p>;
+}
 
 function TalkWithAi() {
-
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
@@ -11,7 +29,8 @@ function TalkWithAi() {
     const askAI = async () => {
         setLoading(true);
         try {
-            const response = await api.getAIResponse(prompt.trim());
+            const userPrompt = prompt.trim() || "Olá!";
+            const response = await api.getAIResponse(userPrompt);
             const data = response.data;
             setResponse(data);
         } catch (error) {
@@ -35,14 +54,15 @@ function TalkWithAi() {
             {loading ? (
                 <span className="loader"></span>
             ) : (
-                <button
+                <button className='ask-ai-button'
                     onClick={askAI}
                     disabled={loading}>
                     Ask AI
                 </button>
             )}
             <div className='output'>
-                {!loading && response && <p>{response}</p>}
+                {/* Só renderiza TypewriterText se houver resposta */}
+                {!loading && response && <TypewriterText key={response} text={response} />}
             </div>
         </div>
     );
