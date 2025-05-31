@@ -20,7 +20,6 @@ export const getAIResponse = async (prompt) => {
   });
 }
 
-export const createPlayers = (data) => {
-  console.log("Creating players with data:", data);
-  nodeAPI.post("/ai/create-players", data);
+export const createPlayers = async (data) => {
+  return await nodeAPI.post("/ai/create-players", data);
 }
