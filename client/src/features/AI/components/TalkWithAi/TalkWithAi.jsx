@@ -25,8 +25,10 @@ function TalkWithAi() {
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const askAI = async () => {
+        setError(null);
         setLoading(true);
         try {
             const userPrompt = prompt.trim() || "Olá!";
@@ -34,6 +36,7 @@ function TalkWithAi() {
             const data = response.data;
             setResponse(data);
         } catch (error) {
+            setError("Failed to fetch AI response. Please try again later.");
             console.error("Error fetching AI response:", error);
         }
         finally {
@@ -54,7 +57,7 @@ function TalkWithAi() {
             {loading ? (
                 <span className="loader"></span>
             ) : (
-                <button className='ask-ai-button'
+                <button className='call-ai-button'
                     onClick={askAI}
                     disabled={loading}>
                     Ask AI
@@ -63,6 +66,8 @@ function TalkWithAi() {
             <div className='output'>
                 {/* Só renderiza TypewriterText se houver resposta */}
                 {!loading && response && <TypewriterText key={response} text={response} />}
+                {/* Exibe mensagem de erro se houver */}
+                {error && <p className="error">{error}</p>}
             </div>
         </div>
     );

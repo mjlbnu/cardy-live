@@ -5,10 +5,12 @@ import './StatementsGenerator.css';
 function StatementsGenerator() {
     const [names, setNames] = useState("");
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const generateStatements = async () => {
+        setError(null);
         if (!names.trim()) {
-            alert("Please enter at least one name.");
+            setError("Please enter at least one name.");
             return;
         }
         setLoading(true);
@@ -16,6 +18,7 @@ function StatementsGenerator() {
             const response = await service.generateStatements(names.trim());
             console.log("Generated Statements:", response);
         } catch (error) {
+            setError("Failed to generate statements. Please try again later.");
             console.error("Error fetching AI response:", error);
         } finally {
             setLoading(false);
@@ -33,14 +36,18 @@ function StatementsGenerator() {
                 disabled={loading}
             />
             {loading ? (
-                <span className="loader"></span>
+                <span className="loader loader-in"></span>
             ) : (
-                <button className='generate-statements-button'
+                <button className='call-ai-button'
                     onClick={generateStatements}
                     disabled={loading}>
                     Generate statements
                 </button>
             )}
+            <div className='output'>
+                {error && <p className='error'>{error}</p>}
+                {!error && !loading && <p className='success'>Statements generated successfully!</p>}
+            </div>
         </div>
     );
 }

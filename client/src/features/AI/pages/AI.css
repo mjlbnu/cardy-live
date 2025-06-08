@@ -90,7 +90,72 @@ img {
   margin-bottom: 20px; /* Spacing below the text container */
 }
 
- h2 {
+ .TalkWithAi > h2 {
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+ .StatementsGenerator > h2 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.ImageGenerator > h2 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.loader {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 10px auto;
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #007bff;;
+    opacity: 1;
+  }
+  70% {
+    box-shadow: 0 0 0 8px #007bff;;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #007bff;;
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.call-ai-button{
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.call-ai-button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
 }
